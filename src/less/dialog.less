@@ -1,0 +1,337 @@
+body{
+  position: relative;
+}
+img{
+  width: 100%;
+  height: auto;
+}
+
+@dialog-radio: 1; //0.85;
+
+//#loginDialog{
+  /*
+  登录
+  mask 级别： z-index: 100
+*/
+  @global-login-z-index: 100;
+  .mask{
+    position: fixed;
+    z-index: @global-login-z-index;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .login-box{
+    position: absolute;
+    z-index: @global-login-z-index + 1;
+    top: 1.3rem * @dialog-radio;
+    left: 50%;
+    width: 6.3rem * @dialog-radio;
+    height: 7.5rem * @dialog-radio;
+    transform: translate(-50%, 0);
+    border-radius: 5px;
+    z-index: 102;
+    background-color: #ffffff;
+    line-height: 1;
+    text-align: center;
+    font-size:0.3rem * @dialog-radio;
+    > h2{
+      text-align: center;
+      color: #383838;
+      font-size: 0.36rem * @dialog-radio;
+      font-weight: normal;
+    }
+  }
+  .login-header{
+    position: relative;
+    overflow: hidden;
+    height:1.6rem * @dialog-radio;
+    width: 100%;
+    background: #f1f1f1;
+    //margin-bottom: 0.4rem;
+  }
+
+  @login-union-width:4.8rem * @dialog-radio;
+  @login-union-height:0.8rem * @dialog-radio;
+
+  .phonenum {
+    width: @login-union-width;
+    height: @login-union-height;
+    line-height: @login-union-height;
+    outline: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.1rem ;
+    margin-bottom: 0.3rem * @dialog-radio;
+    padding-left: 0.25rem * @dialog-radio;
+    box-sizing: border-box;
+    background: #fff;
+    opacity: 1;
+    &::-webkit-input-placeholder{
+      color:#c1c1c1;
+    }
+  }
+  .psw-box{
+    display: flex;
+    justify-content: space-between;
+    width: @login-union-width;
+    margin:0 auto;
+    & .psw, & > .send-psw{
+      font-size: 0.3rem * @dialog-radio;
+      display: block;
+      height: @login-union-height;
+      line-height: @login-union-height;
+      border-radius: 0.1rem;
+      opacity: 1;
+      border: 1px solid #e0e0e0;
+    }
+
+    & .psw{
+      padding-left: 0.25rem * @dialog-radio;
+      width: 2.4rem * @dialog-radio;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
+    & .send-psw,& .send-psw:hover,& .send-psw:active{
+      width: 2.2rem * @dialog-radio;
+      background: #f9225b;
+      border-color: #f9225b;
+      color:#fff;
+
+      &.disable{
+        background:#b3b3b3
+      }
+    }
+  }
+
+  /*
+  .login-btn,& .login-btn:hover,& .login-btn:active{
+    display: block;
+    border-radius: 0.1rem;
+    height: @login-union-height;
+    line-height: @login-union-height;
+    width: @login-union-width;
+    margin:0.8rem auto 0.84rem;
+    background: #f9225b;
+    color:#fff;
+
+    &.disable{
+      background:#b3b3b3
+    }
+  }
+  */
+
+  .login-box ,.login-header{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+
+  .login-btns{
+    display: flex;
+    justify-content: space-between;
+    width: 4.8rem * @dialog-radio;
+    margin: 0 auto;
+  }
+
+  .login-submit,.login-cancel{
+    display: block;
+    width: 2.2rem * @dialog-radio;
+    height:0.8rem * @dialog-radio;
+    outline: 0;
+    font-size: 0.34rem * @dialog-radio;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+  }
+
+
+
+  .login-submit{
+
+    color: #ffffff;
+    border-color: #f9225b;
+    background: #f9225b;
+    box-shadow: none;
+    color: #ffffff;
+
+  }
+
+  .login-cancel{
+    border-color: #f9225b;
+    background: #ffffff;
+  }
+
+
+  .login-logo{
+    margin: 0.25rem * @dialog-radio 0 0.13rem * @dialog-radio;
+    text-align: center;
+    img{
+      width: 1.75rem * @dialog-radio;
+      height:auto;
+    }
+  }
+
+  .login-close{
+    position: absolute;
+    top:0;
+    right:0;
+    display: inline-block;
+    color: #383838;
+    padding: 0.2rem * @dialog-radio;
+
+    img{
+      width: 0.4rem * @dialog-radio;
+      height: auto;
+    }
+  }
+
+
+  .login-msg{
+    position: absolute;
+    top: 4.3rem * @dialog-radio;
+    left: 50%;
+    margin-left: -2.5rem * @dialog-radio;
+    width: 5rem * @dialog-radio;
+    height: 0.8rem * @dialog-radio;
+    line-height: 0.8rem * @dialog-radio;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 0.28rem * @dialog-radio;
+    color:#444444;
+    text-align: center;
+    border-radius: 0.1rem;
+
+  }
+  .login-divide{
+    overflow: hidden;
+    border-top: 1px dashed #b9b9b9 ;
+    margin: 0.3rem * @dialog-radio auto 0.1rem * @dialog-radio;
+    width: @login-union-width;
+  }
+
+  .free-gif{
+    overflow: hidden;
+    margin:0 auto;
+    width: @login-union-width;
+    height: 1.9rem * @dialog-radio;
+    position: relative;
+    text-align: right;
+    img{
+      position: absolute;
+      top:0;
+      left:0;
+      width: 1.75rem * @dialog-radio;
+      height: auto;
+    }
+
+
+  }
+
+  .free-gif-checkbox-wrap{
+    text-align: right;
+    margin: 0.25rem * @dialog-radio 0;
+
+    input[type='checkbox']{
+      visibility: hidden;
+    }
+
+    label{
+      position: relative;
+      height: 0.3rem * @dialog-radio;
+      font-size: 0.3rem * @dialog-radio;
+      color: #a0a0a0;
+      vertical-align: middle;
+      &:before{
+        display: inline-block;
+        content: '';
+        border:1px solid #f9225b;
+        width: 0.3rem * @dialog-radio;
+        height: 0.3rem * @dialog-radio;
+        position: absolute;
+
+        top: 0;
+        left: -0.4rem * @dialog-radio;
+        vertical-align: middle;
+      }
+    }
+    input[type=checkbox]:checked + label:before {
+      background:  #f9225b;
+    }
+  }
+
+  .free-gif-txt{
+    width: 4.2rem * @dialog-radio;
+    text-align: right;
+    margin-left: 0.6rem * @dialog-radio;
+    border: 1px solid #f9225b;
+    color: #f9225b;
+    font-size: 0.26rem * @dialog-radio;
+    margin-top: 0.2rem * @dialog-radio;
+    line-height: 0.8rem * @dialog-radio;
+    padding-right: 0.15rem * @dialog-radio;
+  }
+
+  .login-error-msg{
+    color: red;
+    width: @login-union-width;
+    margin: 0 auto;
+    font-size: 0.3rem * @dialog-radio;
+    line-height: 1.2;
+    text-align: left;
+    height: 0.4rem * @dialog-radio;
+  }
+//}
+
+html,body{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+//#orderDialog{
+  .pop_bg { z-index:@global-login-z-index + 1; position:fixed; top:0; left:0; bottom:0; right:0; background:#000000; opacity:0.5;  }
+  .pop {position:fixed;z-index:@global-login-z-index + 2; background:#ffffff; width:5rem  * @dialog-radio;
+    height:2.4rem * @dialog-radio; top:50%;
+    margin-top:-1.2rem  * @dialog-radio; left:50%; margin-left:-2.5rem  * @dialog-radio; border-radius:0.12rem  * @dialog-radio; }
+  .pop_title { color:#ffffff; font-size:0.3rem * @dialog-radio;
+    text-align:center; background:#f9225b; border-radius:0.12rem * @dialog-radio 0.12rem * @dialog-radio 0 0;
+    padding:0.15rem * @dialog-radio 0;  }
+  .pop_con { text-align:center; margin-top:0.3rem * @dialog-radio; }
+  .pop_con p { line-height:0.5rem * @dialog-radio; font-size:0.28rem * @dialog-radio; color:#444444; }
+
+  .pop2 { position:fixed;z-index:@global-login-z-index + 3; background:#ffffff;
+    width:5rem * @dialog-radio; height:4rem * @dialog-radio; top:50%; margin-top:-2rem * @dialog-radio;
+    left:50%; margin-left:-2.5rem * @dialog-radio; border-radius:0.12rem * @dialog-radio; }
+  .pop2_title { color:#ffffff; font-size:0.3rem * @dialog-radio; text-align:center;
+    background:#f9225b; border-radius:0.12rem * @dialog-radio 0.12rem * @dialog-radio 0 0; padding:0.15rem * @dialog-radio 0;  }
+  .pop2_con { text-align:center;  }
+  .pop2_con img { width:4rem * @dialog-radio; height:1.75rem * @dialog-radio; }
+  .pop2_con p {  font-size:0.28rem * @dialog-radio; color:#f9225b; margin-bottom:0.2rem * @dialog-radio; }
+  .btn_div { text-align:center; }
+  .btn_div a.cancel { color:#ffffff; font-size:0.3rem * @dialog-radio; width:1.7rem * @dialog-radio;
+    display:inline-block; background:#999999; text-align:center; padding:0.1rem * @dialog-radio 0; }
+  .btn_div a.btn { margin-left:0.55rem * @dialog-radio; color:#ffffff; font-size:0.3rem * @dialog-radio;
+    width:1.7rem * @dialog-radio; display:inline-block; background:#f9225b; text-align:center; padding:0.1rem * @dialog-radio 0; }
+
+//}
+
+.clear { clear:both; }
+
+
+.toast{
+  position: fixed;
+  z-index: 9999;
+  top: -1000px;
+  left: 0;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+  line-height: 1.3;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 0.32rem * @dialog-radio;
+  color: #ffffff;
+  text-align: center;
+  padding: 5px 10px;
+  max-width: 70%;
+  word-break: break-all;
+  border-radius: 0.06rem;
+}

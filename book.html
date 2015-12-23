@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- No Baidu Siteapp transform-->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>图书</title>
+<!--    <link rel="stylesheet" href="public/css/migu.min.css"/>
+    <link rel="stylesheet" href="public/css/book.min.css"/>
+   -->
+    <style>
+        /*! normalize.css v3.0.2 | MIT License | git.io/normalize */body,html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}a,a:active,a:hover{text-decoration:none}body,mark{color:#000}body,img{width:100%}html{font-family:sans-serif}body{margin:0;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;background:#fff;height:100%;line-height:1}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,optgroup,strong{font-weight:700}dfn{font-style:italic}mark{background:#ff0}sub,sup{line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}svg:not(:root){overflow:hidden}hr{-webkit-box-sizing:content-box;box-sizing:content-box;height:0}pre,textarea{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type=checkbox],input[type=radio]{-webkit-box-sizing:border-box;box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-appearance:textfield;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}table{border-collapse:collapse;border-spacing:0}a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{-webkit-user-select:none;-webkit-tap-highlight-color:transparent;-moz-tap-highlight-color:transparent;-ms-touch-action:none;-moz-user-select:-moz-none;-webkit-touch-callout:none;margin:0;padding:0;border:0;font-size:16px;-webkit-box-sizing:border-box;box-sizing:border-box}@media only screen and (max-width:215px){html{font-size:25px}}@media only screen and (min-width:216px) and (max-width:251px){html{font-size:30px}}@media only screen and (min-width:252px) and (max-width:287px){html{font-size:35px}}@media only screen and (min-width:288px) and (max-width:323px){html{font-size:40px}}@media only screen and (min-width:324px) and (max-width:359px){html{font-size:45px}}@media only screen and (min-width:360px) and (max-width:395px){html{font-size:50px}}@media only screen and (min-width:396px) and (max-width:431px){html{font-size:55px}}@media only screen and (min-width:432px) and (max-width:467px){html{font-size:60px}}@media only screen and (min-width:468px) and (max-width:503px){html{font-size:65px}}@media only screen and (min-width:504px) and (max-width:539px){html{font-size:70px}}@media only screen and (min-width:540px) and (max-width:575px){html{font-size:75px}}@media only screen and (min-width:576px) and (max-width:611px){html{font-size:80px}}@media only screen and (min-width:612px) and (max-width:647px){html{font-size:85px}}@media only screen and (min-width:648px) and (max-width:683px){html{font-size:90px}}@media only screen and (min-width:684px) and (max-width:719px){html{font-size:95px}}@media only screen and (min-width:720px) and (max-width:755px){html{font-size:100px}}@media only screen and (min-width:756px) and (max-width:791px){html{font-size:105px}}@media only screen and (min-width:792px) and (max-width:827px){html{font-size:110px}}@media only screen and (min-width:828px) and (max-width:863px){html{font-size:115px}}@media only screen and (min-width:864px) and (max-width:899px){html{font-size:120px}}@media only screen and (min-width:900px) and (max-width:935px){html{font-size:125px}}@media only screen and (min-width:936px) and (max-width:971px){html{font-size:130px}}@media only screen and (min-width:972px) and (max-width:1007px){html{font-size:135px}}@media only screen and (min-width:1008px) and (max-width:1043px){html{font-size:140px}}@media only screen and (min-width:1044px) and (max-width:1079px){html{font-size:145px}}@media only screen and (min-width:1080px){html{font-size:150px}}@media (device-width:375px) and (-webkit-min-device-pixel-ratio:2){html{font-size:52.08px}}@media (device-width:414px) and (-webkit-min-device-pixel-ratio:3){html{font-size:57.5px}}
+        .book{background:#fff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;padding:.15rem .5rem .15rem .2rem;margin:.1rem 0}.book+.book{margin-top:0}.book-logo{width:1.47rem;height:2.02rem;margin-right:.3rem}.book-info{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between}.book-info-tit{color:#444;font-size:.3rem;margin:.1rem 0 .16rem;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.book-info-desc,.book-info-mark,.book-info-txt{color:#999;font-size:.24rem;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.book-info-txt{margin-bottom:.16rem}.book-info-desc{margin-bottom:.34rem}.book-info-mark{color:#00ac08}.book-info-mark.over{color:#ff7200}
+        .page,body,html{width:100%;height:100%}.page{position:relative}.content,.header,.header-back{position:absolute}.header{top:0;left:0;right:0;height:1.13rem;background:#e22b27;vertical-align:middle}.header h1{display:block;text-align:center;font-weight:400;font-size:.36rem;color:#fff;line-height:1.13rem}.header-back{display:inline-block;width:.7rem;height:.7rem;left:.3rem;top:50%;margin-top:-.35rem;line-height:.7rem;text-align:center}.header-back img{vertical-align:middle;width:.17rem}.content{top:1.13rem;left:0;right:0;bottom:0;overflow:hidden}.books,.comics,.games,.musics,.videos{height:100%;overflow:scroll}
+        body{
+            background: #eeeeee;
+        }
+
+    </style>
+    <!--<link rel="stylesheet" href="public/css/common.min.css"/>-->
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <a href="javascript:history.go(-1);" class="header-back">
+            <img src="public/images/back.png" alt=""/>
+        </a>
+        <h1>图书</h1>
+    </div>
+    <div class="content">
+        <div class="books">
+            <a href="javascript:void(0);" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark">连载</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+            <a href="#" class="book ">
+                <img data-src="public/images/lb.png" class="book-logo"/>
+                <div class="book-info">
+                    <p class="book-info-tit">复仇者联盟</p>
+                    <p class="book-info-txt">手冢治虫</p>
+                    <p class="book-info-desc">中国版《纸牌屋》，异常勾心斗角、尔虞我...</p>
+                    <p class="book-info-mark over">完结</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="public/js/jquery.min.js"></script>
+<script src="public/js/lazyload.min.js"></script>
+<script>
+    $(function(){
+        var $books = $(".books");
+        var contentHeight = $(".content").height();
+        $books.height(contentHeight);
+        $('img[data-src]').lazyload({
+            data_attribute:'src',
+            container: $books
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- No Baidu Siteapp transform-->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>咪咕礼包</title>
+
+    <link rel="stylesheet" href="public/css/migu.min.css"/>
+    <link rel="stylesheet" href="public/css/h5.min.css"/>
+
+</head>
+<script src="public/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="public/js/swiper.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    /*!
+     * An jQuery | zepto plugin for lazy loading images.
+     * author -> jieyou
+     * see https://github.com/jieyou/lazyload
+     * use some tuupola's code https://github.com/tuupola/jquery_lazyload (BSD)
+     * use component's throttle https://github.com/component/throttle (MIT)
+     */
+    !function(a){"function"==typeof define&&define.amd?define(["jquery"],a):a(window.jQuery||window.Zepto)}(function(a,b){function g(){}function h(a,b){var e;return e=b._$container==d?("innerHeight"in c?c.innerHeight:d.height())+d.scrollTop():b._$container.offset().top+b._$container.height(),e<=a.offset().top-b.threshold}function i(b,e){var f;return f=e._$container==d?d.width()+(a.fn.scrollLeft?d.scrollLeft():c.pageXOffset):e._$container.offset().left+e._$container.width(),f<=b.offset().left-e.threshold}function j(a,b){var c;return c=b._$container==d?d.scrollTop():b._$container.offset().top,c>=a.offset().top+b.threshold+a.height()}function k(b,e){var f;return f=e._$container==d?a.fn.scrollLeft?d.scrollLeft():c.pageXOffset:e._$container.offset().left,f>=b.offset().left+e.threshold+b.width()}function l(a,b){var c=0;a.each(function(d,e){function g(){f.trigger("_lazyload_appear"),c=0}var f=a.eq(d);if(!(f.width()<=0&&f.height()<=0||"none"===f.css("display")))if(b.vertical_only)if(j(f,b));else if(h(f,b)){if(++c>b.failure_limit)return!1}else g();else if(j(f,b)||k(f,b));else if(h(f,b)||i(f,b)){if(++c>b.failure_limit)return!1}else g()})}function m(a){return a.filter(function(b,c){return!a.eq(b)._lazyload_loadStarted})}function n(a,b){function h(){f=0,g=+new Date,e=a.apply(c,d),c=null,d=null}var c,d,e,f,g=0;return function(){c=this,d=arguments;var a=new Date-g;return f||(a>=b?h():f=setTimeout(h,b-a)),e}}var f,c=window,d=a(c),e={threshold:0,failure_limit:0,event:"scroll",effect:"show",effect_params:null,container:c,data_attribute:"original",data_srcset_attribute:"original-srcset",skip_invisible:!0,appear:g,load:g,vertical_only:!1,check_appear_throttle_time:300,url_rewriter_fn:g,no_fake_img_loader:!1,placeholder_data_img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC",placeholder_real_img:"http://ditu.baidu.cn/yyfm/lazyload/0.0.1/img/placeholder.png"};f=function(){var a=Object.prototype.toString;return function(b){return a.call(b).replace("[object ","").replace("]","")}}(),a.fn.hasOwnProperty("lazyload")||(a.fn.lazyload=function(b){var i,j,k,h=this;return a.isPlainObject(b)||(b={}),a.each(e,function(g,h){-1!=a.inArray(g,["threshold","failure_limit","check_appear_throttle_time"])?"String"==f(b[g])?b[g]=parseInt(b[g],10):b[g]=h:"container"==g?(b.hasOwnProperty(g)?b[g]==c||b[g]==document?b._$container=d:b._$container=a(b[g]):b._$container=d,delete b.container):!e.hasOwnProperty(g)||b.hasOwnProperty(g)&&f(b[g])==f(e[g])||(b[g]=h)}),i="scroll"==b.event,k=0==b.check_appear_throttle_time?l:n(l,b.check_appear_throttle_time),j=i||"scrollstart"==b.event||"scrollstop"==b.event,h.each(function(c,d){var e=this,f=h.eq(c),i=f.attr("src"),k=f.attr("data-"+b.data_attribute),l=b.url_rewriter_fn==g?k:b.url_rewriter_fn.call(e,f,k),n=f.attr("data-"+b.data_srcset_attribute),o=f.is("img");return 1==f._lazyload_loadStarted||i==l?(f._lazyload_loadStarted=!0,void(h=m(h))):(f._lazyload_loadStarted=!1,o&&!i&&f.one("error",function(){f.attr("src",b.placeholder_real_img)}).attr("src",b.placeholder_data_img),f.one("_lazyload_appear",function(){function i(){d&&f.hide(),o?(n&&f.attr("srcset",n),l&&f.attr("src",l)):f.css("background-image",'url("'+l+'")'),d&&f[b.effect].apply(f,c?b.effect_params:[]),h=m(h)}var d,c=a.isArray(b.effect_params);f._lazyload_loadStarted||(d="show"!=b.effect&&a.fn[b.effect]&&(!b.effect_params||c&&0==b.effect_params.length),b.appear!=g&&b.appear.call(e,f,h.length,b),f._lazyload_loadStarted=!0,b.no_fake_img_loader||n?(b.load!=g&&f.one("load",function(){b.load.call(e,f,h.length,b)}),i()):a("<img />").one("load",function(){i(),b.load!=g&&b.load.call(e,f,h.length,b)}).attr("src",l))}),void(j||f.on(b.event,function(){f._lazyload_loadStarted||f.trigger("_lazyload_appear")})))}),j&&b._$container.on(b.event,function(){k(h,b)}),d.on("resize load",function(){k(h,b)}),a(function(){k(h,b)}),this})});
+</script>
+<body>
+    <!--登录框-->
+    <div class="mask js-mask-login" style="display: none;">
+        <form action="">
+        <div class="login-box">
+                <div class="login-header">
+                    <a href="#" class="login-close"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTE2NEUyN0U5NzQ1MTFFNUFBMEVERkM4NjNDMzA1NzUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTE2NEUyN0Y5NzQ1MTFFNUFBMEVERkM4NjNDMzA1NzUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBMTY0RTI3Qzk3NDUxMUU1QUEwRURGQzg2M0MzMDU3NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBMTY0RTI3RDk3NDUxMUU1QUEwRURGQzg2M0MzMDU3NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnX8aL8AAAGsSURBVHjaxNhLSgNBEAbgtlD3ZqngA4JHSMCFaI6gq6wU8Q7eJbjQlR5B8BFXWU28gIIRPECOYLXUwNBk+lU11Q1/SCYD8zH9Knqtqqq+MeYeM8DMMBeYhSnTmpY5Zgz4cYc5wqxjjjHvmP0CuEN6dm0ZYiZAX5ptrwDS4t4wO871IVC3moLINpxtMwu8xPwUQvpwX5hrC/zGnBZAhnDW9At0QRsZhbM/oPGHFjIa5wI1kEm4VcAukcm4NmAXyCycDyiJzMaFgBJIFi4GyEGycbHAHKQILgWYghTDpQJr5EkAKYbLARoqZn1IMVwuMIQUw3GAschPDo4LtG2TyvO2Nzfi4LhA32xlvzkuMIQbSeBygWo44xk/0rgtzDk97xGz7AKYi+thPmiNtO2GxudCsos53XrWwBnaDqPrSVAYcxucehIUJsQD7eFZSFCYrUu611dgHKQCpZeSUIExbUOC4jqXhQTlRTgZCQ5uqrBDJCHBwW1rbF8pSAvsK+NSkLv1EbA2LhZ5u+oIWAsXg/w/Ap4XxIWQlQWOMc+04j/RjZo4F/lCllfM1Z8AAwByds8vln2q4AAAAABJRU5ErkJggg==" alt=""/></a>
+                    <div class="login-logo">
+                        <img src="public/images/logo.png"  alt="咪咕礼包"/>
+                    </div>
+                    <h2>用户登录</h2>
+                </div>
+                <input type="text" placeholder="输入手机号码" class="phonenum"/>
+                <div class="psw-box">
+                    <input type="text" placeholder="输入验证码" class="psw"/>
+                    <a href="javascript:;" class="send-psw">发送验证码</a>
+                </div>
+                <div class="login-divide"></div>
+                <div class="free-gif">
+                    <div class="free-gif-logo">
+                        <img src="public/images/free_gif.png" alt=""/>
+                    </div>
+                    <div class="free-gif-txt">0元免费订，优惠享不停</div>
+
+                    <div class="free-gif-checkbox-wrap">
+                        <input type="checkbox" id="checkboxOneInput" class="free-gif-checkbox" />
+                        <label for="checkboxOneInput">免费领取</label>
+                    </div>
+                </div>
+                <div class="login-btns">
+                    <button href="javascript:;" class="login-cancel" >取消</button>
+                    <button href="javascript:;" class="login-submit" >登录</button>
+                </div>
+        </div>
+        </form>
+    </div>
+
+    <!--登录成功提示-->
+    <div class="mask js-mask-success"  style="display: none;">
+        <div class="login-msg">
+            登录成功
+        </div>
+    </div>
+
+    <!--登录end-->
+
+    <!--头部-->
+    <div class="header">
+
+        <div class="header-logo-wrap"><img src="public/images/logo.png" class="header-logo" alt="咪咕礼包"/></div>
+
+<!--        <ul class="header-user   style="display: none;">
+            <li><a href="#" class="user-login">登录</a></li>
+            <li><span class="divider"></span></li>
+            <li><a href="#">注册</a></li>
+        </ul>-->
+        <!--已登录-->
+        <div class="header-user" style="display: none;">
+            <img src="public/images/user.png" class="header-user-img" alt="用户"/>
+            <span class="header-user-name">15918402651</span>，又见面啦!
+        </div>
+
+        <!--未登录-->
+        <div class="header-user">
+            <img src="public/images/user.png" class="header-user-img" alt="用户"/>
+            <div class="header-user-nav">
+                <a href="javascript:;" class="user-login">登录</a>
+                <span class="divide"></span>
+                <a href="javascript:;" class="user-register">注册</a>
+            </div>
+        </div>
+
+    </div>
+    <!--头部end-->
+
+    <!-- 广告轮播-->
+    <div class="swiper-container ads">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a href="#"><img data-src="public/images/ads.png"  class="swiper-lazy" alt=""/></a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#"><img data-src="public/images/ads.png"  class="swiper-lazy" alt=""/></a>
+
+            </div>
+            <div class="swiper-slide">
+                <a href="#"><img data-src="public/images/ads.png"  class="swiper-lazy" alt=""/></a>
+            </div>
+        </div>
+        <div class="swiper-pagination ads-swiper-pagination"></div>
+    </div>
+    <!--广告轮播END-->
+
+    <!--营销box-->
+    <div class="sale-box" style="background:url('public/images/yh.jpg')  0 0 no-repeat;background-size: 100% 100% ">
+        <div class="sale-occupy"></div>
+        <div class="sale-btn-wrap">
+            <a href="#" class="sale-btn">免费领取</a>
+        </div>
+    </div>
+    <!--营销End-->
+
+    <!--权益介绍-->
+    <div class="legal-box">
+        <div class="ellipse">
+            <div class="ellipse-clip">
+                <span class="legal-tit">[权益介绍]</span>领取咪咕体验包，尊享数字娱乐饕鬄盛宴：
+            </div>
+            <div class="ellipse-original">
+                <span class="legal-tit">[权益介绍]</span>领取咪咕体验包，尊享数字娱乐饕鬄盛宴：
+            </div>
+            <div class="ellipse-btn js-legal-oper"></div>
+        </div>
+    </div>
+    <!--权益介绍End-->
+
+    <!--限免区域-->
+    <div class="panel limit-free-panel">
+<!--        <div class="panel-hd">
+            <div class="panel-hd-tit-box"><img class="icon-free" src="public/images/icon-free.png"/><span class="panel-hd-tit">限时免费</span></div>
+            <div><a class="panel-hd-more">精彩内容&nbsp;限时免费畅享</a></div>
+        </div>-->
+        <div class="panel-bd">
+            <div class="swiper-container limit-free">
+                <div class="swiper-pagination limit-free-pagination"></div>
+                <div class="swiper-lazy-preloader"></div>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide ">
+                        <div class="frees-box">
+                            <div class="frees">
+                                <ul class="avg-3 books">
+                                    <li>
+                                        <a  href="#" class="book">
+                                            <div class="book-logo">
+                                                <div class="label-free"></div>
+                                                <img  class="swiper-lazy" data-src="public/images/book.png"/>
+                                            </div>
+                                            <p class="book-tit">学长的夏天</p>
+                                            <p class="book-txt">优美夏子</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" class="book">
+                                            <div class="book-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/book.png"/>
+                                            </div>
+                                            <div class="book-cover">
+                                                <p class="book-tit">学长的夏天</p>
+                                                <p class="book-txt">优美夏子</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" class="book">
+                                            <div class="book-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/book.png"/>
+                                            </div>
+                                            <div class="book-cover">
+                                                <p class="book-tit">学长的夏天</p>
+                                                <p class="book-txt">优美夏子</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="limit-free-more">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MkZBNDNBQTU5NUExMTFFNUI2NzNEMDk3Q0ZFRTA3OTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkZBNDNBQTY5NUExMTFFNUI2NzNEMDk3Q0ZFRTA3OTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyRkE0M0FBMzk1QTExMUU1QjY3M0QwOTdDRkVFMDc5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyRkE0M0FBNDk1QTExMUU1QjY3M0QwOTdDRkVFMDc5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps0uGuUAAARHSURBVHjazJl7aI1xGMffvTuYuYwy5FbGmuvcJhrFcidlrhlKy2VuK4pQiD/WlD9cslHWkEvGiEguEVJy3eSaGpHmbkPWmB3fx56jX0+/95z3Pe/ZOXvq0/bev+f3Pr/n+T3PG+Vd3N9wYbFgJEgFg0ACiAdx4BeoAF/Bc3AP3AXXQFWwD4wKQnAUGAcywSQW7cR+grOgAFwCXicXmw4flg4egPNgRhBifW9lJrgASsHU+hDcFVwBJ0E/I3TWFxSDyyDRzgUeG+dkgD2ghcXxP+A2uAkegdfgG9+7FegABoDBTLTmHqPAfZAFDgcrmHw1B6y1OE7C8tgXPwX40YX8lybkbLAE9BDnNAeHQDI/0+vEJUjsbguxb8Fc0A1stRAbA5pq9n8EO0FvMI/vJW0N2MsabAvO4VGQth/04tdWY3HtQlDJIW2ZxTm1PJo9+Z66e+TYDWtz+GbST1eA/ACvvjEL9Y1uNcfk6gDX0eDs0vg3zZ+j/kY4kSeYFJthQyxZe+EKTUA7G9fl8zP+iP17ORlZCs5n51dtHSgy6t/oGdliH0WmfVaC0zm8qEavY5sRPsuTLgBLU5OLqUSFzZoZneU0dYbAsjWRZ5MvavgEj+aso9oGTgDhNhK7Wuyj2DxWFbxInPCME0Kk7CCv8FRb4BNMs3qCxpdqIii4ljWoRivDpiR4BGgmwtgxI/J2WIQ5Gtg0EpwiTrwDPjQAwZ/BLbFvmMmVghTcUEwKHuDhfK5aSYgf2sViVUhlUnmAax+K7QSPJnW+CrHgG36OUcUxHryzOP5Gpn6TF9mqVYTxlVP1ssrP8e8yVZscQtzUeTLoVzu8ptbPMbkYMk3dr3AhmCri5fzXjlFZtN3P8dZiu9LD/hOn7Ozs8jXT6uqAZtWnG71Aqb+T2H5PgstAksjbbu03N1BCUVWr9sTkPoNqQxtQHE6VLmRyeS4Ft2kAYknDEJnUSPBV0euK5nIl0pYhajzSeM3kf86Kk5e6DG9uzeSiVzXSWOUTJde+Sdx7iJRRz6K7Jvr8L/OjeA2RLJJATxtdnVAbucFLEV5Lud3l9Y0w1W1bNE6/IwKjG6fJBRt9taXqp8U8AaXjLwmz4C/gjLJ9XN2WnZ8Edo0WmkZKURhFNwKT+dnn1HJNRoIyLu2lTx0J80hTpqRe9GlZW+pCF4nL1YimorDQ5eJIF76aOb1AZ+uNur6WtPngqVHXMDRdCs3kaPCD3S3ajWAvu0Cu5lhHo667+Zi7NPEOhLYFK7nnUMDlExl9L5lo5wZ2viLRaO7xs1ykiUGfs27zQqqcV2rkey1ZVB8w3LD+ZEBG/bNToRBMRm1Y6myOqqdJRhNslp3mjV0/fAHGgOlG3YeXUBmF0Clgmt1Ok5OJ4+XkQoUjfVg84aAUkmVUEQ/AQA5dts0TxAOpaLzIxHKrK4UbMklchRMxXIG/4/hewiX/9SB/6D/7K8AArOfpUWLP5FEAAAAASUVORK5CYII=" class="limit-free-more-p1" alt=""/>
+                                更多限时免费内容
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAaCAYAAABozQZiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0IzMjk3RkY5NUExMTFFNTgyQjNGOEVCRjczQjU5QjQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0IzMjk4MDA5NUExMTFFNTgyQjNGOEVCRjczQjU5QjQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozQjMyOTdGRDk1QTExMUU1ODJCM0Y4RUJGNzNCNTlCNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozQjMyOTdGRTk1QTExMUU1ODJCM0Y4RUJGNzNCNTlCNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp9dIMUAAAF2SURBVHjalNQ9KEVhHMfxc6/jJaK8lGS5C4uFgQxCUYgkSsnCIC9JYVE2iUVJFgwGLwPC4CUvKbqTjUUGymBgUJRSN7q+f/1vnXQ793l+9alzht+9z3nO/zmBaH/pleM4BWjFvWORIApRhDDKbcv1eEAeLlBnU35CFW6QiSN0mJYlr6iFPH8qttBnWpZ8oAkHSMIyJkzLki+0Yw0BzGJOrxOWJd/owbzej2NVV5OwLIliDJN6LT+2hzSTciwzGMCPDtEJskzLkhV0IYIaXCLftCzZQTM+UabTGAow2zYTWYFj5MpUBh27JHtWG7Epy7LPkI07NJiWu7GPdFyjGs8m5RGs65LP9RS+mez2FBZ0PLfRojv+F9dn5hcxpPdLGNZh8Z2wFGx6itMY/F+M988Z2JWd1Jke1WXHjbeco1+RSj1Zvdjw25BYWT6CpyjRM92Jw0SvQcrFWgzhXU9P2OTlu57iCxpxazpyrn7o5d214dFm0H8FGADhgkq6XC/KgAAAAABJRU5ErkJggg==" class="limit-free-more-p2" alt=""/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="frees-box">
+                            <div class="frees">
+                                <ul class="avg-4 apps">
+                                    <li>
+                                        <a  href="#" class="app">
+                                            <div class="app-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/game.png"/>
+                                            </div>
+                                            <p class="app-tit">愤怒的小鸟3</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" class="app">
+                                            <div class="app-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/game.png"/>
+                                            </div>
+                                            <p class="app-tit">愤怒的小鸟3</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" class="app">
+                                            <div class="app-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/game.png"/>
+                                            </div>
+                                            <p class="app-tit">愤怒的小鸟3</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" class="app">
+                                            <div class="app-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/game.png"/>
+                                            </div>
+                                            <p class="app-tit">愤怒的小鸟3</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="limit-free-more">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MkZBNDNBQTU5NUExMTFFNUI2NzNEMDk3Q0ZFRTA3OTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkZBNDNBQTY5NUExMTFFNUI2NzNEMDk3Q0ZFRTA3OTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyRkE0M0FBMzk1QTExMUU1QjY3M0QwOTdDRkVFMDc5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyRkE0M0FBNDk1QTExMUU1QjY3M0QwOTdDRkVFMDc5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps0uGuUAAARHSURBVHjazJl7aI1xGMffvTuYuYwy5FbGmuvcJhrFcidlrhlKy2VuK4pQiD/WlD9cslHWkEvGiEguEVJy3eSaGpHmbkPWmB3fx56jX0+/95z3Pe/ZOXvq0/bev+f3Pr/n+T3PG+Vd3N9wYbFgJEgFg0ACiAdx4BeoAF/Bc3AP3AXXQFWwD4wKQnAUGAcywSQW7cR+grOgAFwCXicXmw4flg4egPNgRhBifW9lJrgASsHU+hDcFVwBJ0E/I3TWFxSDyyDRzgUeG+dkgD2ghcXxP+A2uAkegdfgG9+7FegABoDBTLTmHqPAfZAFDgcrmHw1B6y1OE7C8tgXPwX40YX8lybkbLAE9BDnNAeHQDI/0+vEJUjsbguxb8Fc0A1stRAbA5pq9n8EO0FvMI/vJW0N2MsabAvO4VGQth/04tdWY3HtQlDJIW2ZxTm1PJo9+Z66e+TYDWtz+GbST1eA/ACvvjEL9Y1uNcfk6gDX0eDs0vg3zZ+j/kY4kSeYFJthQyxZe+EKTUA7G9fl8zP+iP17ORlZCs5n51dtHSgy6t/oGdliH0WmfVaC0zm8qEavY5sRPsuTLgBLU5OLqUSFzZoZneU0dYbAsjWRZ5MvavgEj+aso9oGTgDhNhK7Wuyj2DxWFbxInPCME0Kk7CCv8FRb4BNMs3qCxpdqIii4ljWoRivDpiR4BGgmwtgxI/J2WIQ5Gtg0EpwiTrwDPjQAwZ/BLbFvmMmVghTcUEwKHuDhfK5aSYgf2sViVUhlUnmAax+K7QSPJnW+CrHgG36OUcUxHryzOP5Gpn6TF9mqVYTxlVP1ssrP8e8yVZscQtzUeTLoVzu8ptbPMbkYMk3dr3AhmCri5fzXjlFZtN3P8dZiu9LD/hOn7Ozs8jXT6uqAZtWnG71Aqb+T2H5PgstAksjbbu03N1BCUVWr9sTkPoNqQxtQHE6VLmRyeS4Ft2kAYknDEJnUSPBV0euK5nIl0pYhajzSeM3kf86Kk5e6DG9uzeSiVzXSWOUTJde+Sdx7iJRRz6K7Jvr8L/OjeA2RLJJATxtdnVAbucFLEV5Lud3l9Y0w1W1bNE6/IwKjG6fJBRt9taXqp8U8AaXjLwmz4C/gjLJ9XN2WnZ8Edo0WmkZKURhFNwKT+dnn1HJNRoIyLu2lTx0J80hTpqRe9GlZW+pCF4nL1YimorDQ5eJIF76aOb1AZ+uNur6WtPngqVHXMDRdCs3kaPCD3S3ajWAvu0Cu5lhHo667+Zi7NPEOhLYFK7nnUMDlExl9L5lo5wZ2viLRaO7xs1ykiUGfs27zQqqcV2rkey1ZVB8w3LD+ZEBG/bNToRBMRm1Y6myOqqdJRhNslp3mjV0/fAHGgOlG3YeXUBmF0Clgmt1Ok5OJ4+XkQoUjfVg84aAUkmVUEQ/AQA5dts0TxAOpaLzIxHKrK4UbMklchRMxXIG/4/hewiX/9SB/6D/7K8AArOfpUWLP5FEAAAAASUVORK5CYII=" class="limit-free-more-p1" alt=""/>
+                                更多限时免费内容
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAaCAYAAABozQZiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0IzMjk3RkY5NUExMTFFNTgyQjNGOEVCRjczQjU5QjQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0IzMjk4MDA5NUExMTFFNTgyQjNGOEVCRjczQjU5QjQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozQjMyOTdGRDk1QTExMUU1ODJCM0Y4RUJGNzNCNTlCNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozQjMyOTdGRTk1QTExMUU1ODJCM0Y4RUJGNzNCNTlCNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp9dIMUAAAF2SURBVHjalNQ9KEVhHMfxc6/jJaK8lGS5C4uFgQxCUYgkSsnCIC9JYVE2iUVJFgwGLwPC4CUvKbqTjUUGymBgUJRSN7q+f/1vnXQ793l+9alzht+9z3nO/zmBaH/pleM4BWjFvWORIApRhDDKbcv1eEAeLlBnU35CFW6QiSN0mJYlr6iFPH8qttBnWpZ8oAkHSMIyJkzLki+0Yw0BzGJOrxOWJd/owbzej2NVV5OwLIliDJN6LT+2hzSTciwzGMCPDtEJskzLkhV0IYIaXCLftCzZQTM+UabTGAow2zYTWYFj5MpUBh27JHtWG7Epy7LPkI07NJiWu7GPdFyjGs8m5RGs65LP9RS+mez2FBZ0PLfRojv+F9dn5hcxpPdLGNZh8Z2wFGx6itMY/F+M988Z2JWd1Jke1WXHjbeco1+RSj1Zvdjw25BYWT6CpyjRM92Jw0SvQcrFWgzhXU9P2OTlu57iCxpxazpyrn7o5d214dFm0H8FGADhgkq6XC/KgAAAAABJRU5ErkJggg==" class="limit-free-more-p2" alt=""/>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="frees-box">
+                            <div class="frees">
+                                <ul class="avg-2 videos">
+                                    <li>
+                                        <a href="#" class="video">
+                                            <div class="video-logo"><img  class="swiper-lazy" data-src="public/images/video.png"/></div>
+                                            <p class="video-tit">花千骨</p>
+                                            <p class="video-txt">同名热门小说改编</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="video">
+                                            <div class="video-logo"><img  class="swiper-lazy" data-src="public/images/video.png"/></div>
+                                            <p class="video-tit">花千骨</p>
+                                            <p class="video-txt">同名热门小说改编</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="limit-free-more">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MkZBNDNBQTU5NUExMTFFNUI2NzNEMDk3Q0ZFRTA3OTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkZBNDNBQTY5NUExMTFFNUI2NzNEMDk3Q0ZFRTA3OTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyRkE0M0FBMzk1QTExMUU1QjY3M0QwOTdDRkVFMDc5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyRkE0M0FBNDk1QTExMUU1QjY3M0QwOTdDRkVFMDc5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps0uGuUAAARHSURBVHjazJl7aI1xGMffvTuYuYwy5FbGmuvcJhrFcidlrhlKy2VuK4pQiD/WlD9cslHWkEvGiEguEVJy3eSaGpHmbkPWmB3fx56jX0+/95z3Pe/ZOXvq0/bev+f3Pr/n+T3PG+Vd3N9wYbFgJEgFg0ACiAdx4BeoAF/Bc3AP3AXXQFWwD4wKQnAUGAcywSQW7cR+grOgAFwCXicXmw4flg4egPNgRhBifW9lJrgASsHU+hDcFVwBJ0E/I3TWFxSDyyDRzgUeG+dkgD2ghcXxP+A2uAkegdfgG9+7FegABoDBTLTmHqPAfZAFDgcrmHw1B6y1OE7C8tgXPwX40YX8lybkbLAE9BDnNAeHQDI/0+vEJUjsbguxb8Fc0A1stRAbA5pq9n8EO0FvMI/vJW0N2MsabAvO4VGQth/04tdWY3HtQlDJIW2ZxTm1PJo9+Z66e+TYDWtz+GbST1eA/ACvvjEL9Y1uNcfk6gDX0eDs0vg3zZ+j/kY4kSeYFJthQyxZe+EKTUA7G9fl8zP+iP17ORlZCs5n51dtHSgy6t/oGdliH0WmfVaC0zm8qEavY5sRPsuTLgBLU5OLqUSFzZoZneU0dYbAsjWRZ5MvavgEj+aso9oGTgDhNhK7Wuyj2DxWFbxInPCME0Kk7CCv8FRb4BNMs3qCxpdqIii4ljWoRivDpiR4BGgmwtgxI/J2WIQ5Gtg0EpwiTrwDPjQAwZ/BLbFvmMmVghTcUEwKHuDhfK5aSYgf2sViVUhlUnmAax+K7QSPJnW+CrHgG36OUcUxHryzOP5Gpn6TF9mqVYTxlVP1ssrP8e8yVZscQtzUeTLoVzu8ptbPMbkYMk3dr3AhmCri5fzXjlFZtN3P8dZiu9LD/hOn7Ozs8jXT6uqAZtWnG71Aqb+T2H5PgstAksjbbu03N1BCUVWr9sTkPoNqQxtQHE6VLmRyeS4Ft2kAYknDEJnUSPBV0euK5nIl0pYhajzSeM3kf86Kk5e6DG9uzeSiVzXSWOUTJde+Sdx7iJRRz6K7Jvr8L/OjeA2RLJJATxtdnVAbucFLEV5Lud3l9Y0w1W1bNE6/IwKjG6fJBRt9taXqp8U8AaXjLwmz4C/gjLJ9XN2WnZ8Edo0WmkZKURhFNwKT+dnn1HJNRoIyLu2lTx0J80hTpqRe9GlZW+pCF4nL1YimorDQ5eJIF76aOb1AZ+uNur6WtPngqVHXMDRdCs3kaPCD3S3ajWAvu0Cu5lhHo667+Zi7NPEOhLYFK7nnUMDlExl9L5lo5wZ2viLRaO7xs1ykiUGfs27zQqqcV2rkey1ZVB8w3LD+ZEBG/bNToRBMRm1Y6myOqqdJRhNslp3mjV0/fAHGgOlG3YeXUBmF0Clgmt1Ok5OJ4+XkQoUjfVg84aAUkmVUEQ/AQA5dts0TxAOpaLzIxHKrK4UbMklchRMxXIG/4/hewiX/9SB/6D/7K8AArOfpUWLP5FEAAAAASUVORK5CYII=" class="limit-free-more-p1" alt=""/>
+                                更多限时免费内容
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAaCAYAAABozQZiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0IzMjk3RkY5NUExMTFFNTgyQjNGOEVCRjczQjU5QjQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0IzMjk4MDA5NUExMTFFNTgyQjNGOEVCRjczQjU5QjQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozQjMyOTdGRDk1QTExMUU1ODJCM0Y4RUJGNzNCNTlCNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozQjMyOTdGRTk1QTExMUU1ODJCM0Y4RUJGNzNCNTlCNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp9dIMUAAAF2SURBVHjalNQ9KEVhHMfxc6/jJaK8lGS5C4uFgQxCUYgkSsnCIC9JYVE2iUVJFgwGLwPC4CUvKbqTjUUGymBgUJRSN7q+f/1vnXQ793l+9alzht+9z3nO/zmBaH/pleM4BWjFvWORIApRhDDKbcv1eEAeLlBnU35CFW6QiSN0mJYlr6iFPH8qttBnWpZ8oAkHSMIyJkzLki+0Yw0BzGJOrxOWJd/owbzej2NVV5OwLIliDJN6LT+2hzSTciwzGMCPDtEJskzLkhV0IYIaXCLftCzZQTM+UabTGAow2zYTWYFj5MpUBh27JHtWG7Epy7LPkI07NJiWu7GPdFyjGs8m5RGs65LP9RS+mez2FBZ0PLfRojv+F9dn5hcxpPdLGNZh8Z2wFGx6itMY/F+M988Z2JWd1Jke1WXHjbeco1+RSj1Zvdjw25BYWT6CpyjRM92Jw0SvQcrFWgzhXU9P2OTlu57iCxpxazpyrn7o5d214dFm0H8FGADhgkq6XC/KgAAAAABJRU5ErkJggg==" class="limit-free-more-p2" alt=""/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="frees-box">
+                            <div class="frees">
+                                <ul class="avg-4 musics">
+                                    <li>
+                                        <a  href="#" class="music">
+                                            <div class="music-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/music.png"/>
+                                            </div>
+                                            <p class="music-tit">第三人称</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" class="music">
+                                            <div class="music-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/music.png"/>
+                                            </div>
+                                            <p class="music-tit">第三人称</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" class="music">
+                                            <div class="music-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/music.png"/>
+                                            </div>
+                                            <p class="music-tit">第三人称</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" class="music">
+                                            <div class="music-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/music.png"/>
+                                            </div>
+                                            <p class="music-tit">第三人称</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="limit-free-more">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MkZBNDNBQTU5NUExMTFFNUI2NzNEMDk3Q0ZFRTA3OTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkZBNDNBQTY5NUExMTFFNUI2NzNEMDk3Q0ZFRTA3OTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyRkE0M0FBMzk1QTExMUU1QjY3M0QwOTdDRkVFMDc5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyRkE0M0FBNDk1QTExMUU1QjY3M0QwOTdDRkVFMDc5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps0uGuUAAARHSURBVHjazJl7aI1xGMffvTuYuYwy5FbGmuvcJhrFcidlrhlKy2VuK4pQiD/WlD9cslHWkEvGiEguEVJy3eSaGpHmbkPWmB3fx56jX0+/95z3Pe/ZOXvq0/bev+f3Pr/n+T3PG+Vd3N9wYbFgJEgFg0ACiAdx4BeoAF/Bc3AP3AXXQFWwD4wKQnAUGAcywSQW7cR+grOgAFwCXicXmw4flg4egPNgRhBifW9lJrgASsHU+hDcFVwBJ0E/I3TWFxSDyyDRzgUeG+dkgD2ghcXxP+A2uAkegdfgG9+7FegABoDBTLTmHqPAfZAFDgcrmHw1B6y1OE7C8tgXPwX40YX8lybkbLAE9BDnNAeHQDI/0+vEJUjsbguxb8Fc0A1stRAbA5pq9n8EO0FvMI/vJW0N2MsabAvO4VGQth/04tdWY3HtQlDJIW2ZxTm1PJo9+Z66e+TYDWtz+GbST1eA/ACvvjEL9Y1uNcfk6gDX0eDs0vg3zZ+j/kY4kSeYFJthQyxZe+EKTUA7G9fl8zP+iP17ORlZCs5n51dtHSgy6t/oGdliH0WmfVaC0zm8qEavY5sRPsuTLgBLU5OLqUSFzZoZneU0dYbAsjWRZ5MvavgEj+aso9oGTgDhNhK7Wuyj2DxWFbxInPCME0Kk7CCv8FRb4BNMs3qCxpdqIii4ljWoRivDpiR4BGgmwtgxI/J2WIQ5Gtg0EpwiTrwDPjQAwZ/BLbFvmMmVghTcUEwKHuDhfK5aSYgf2sViVUhlUnmAax+K7QSPJnW+CrHgG36OUcUxHryzOP5Gpn6TF9mqVYTxlVP1ssrP8e8yVZscQtzUeTLoVzu8ptbPMbkYMk3dr3AhmCri5fzXjlFZtN3P8dZiu9LD/hOn7Ozs8jXT6uqAZtWnG71Aqb+T2H5PgstAksjbbu03N1BCUVWr9sTkPoNqQxtQHE6VLmRyeS4Ft2kAYknDEJnUSPBV0euK5nIl0pYhajzSeM3kf86Kk5e6DG9uzeSiVzXSWOUTJde+Sdx7iJRRz6K7Jvr8L/OjeA2RLJJATxtdnVAbucFLEV5Lud3l9Y0w1W1bNE6/IwKjG6fJBRt9taXqp8U8AaXjLwmz4C/gjLJ9XN2WnZ8Edo0WmkZKURhFNwKT+dnn1HJNRoIyLu2lTx0J80hTpqRe9GlZW+pCF4nL1YimorDQ5eJIF76aOb1AZ+uNur6WtPngqVHXMDRdCs3kaPCD3S3ajWAvu0Cu5lhHo667+Zi7NPEOhLYFK7nnUMDlExl9L5lo5wZ2viLRaO7xs1ykiUGfs27zQqqcV2rkey1ZVB8w3LD+ZEBG/bNToRBMRm1Y6myOqqdJRhNslp3mjV0/fAHGgOlG3YeXUBmF0Clgmt1Ok5OJ4+XkQoUjfVg84aAUkmVUEQ/AQA5dts0TxAOpaLzIxHKrK4UbMklchRMxXIG/4/hewiX/9SB/6D/7K8AArOfpUWLP5FEAAAAASUVORK5CYII=" class="limit-free-more-p1" alt=""/>
+                                更多限时免费内容
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAaCAYAAABozQZiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0IzMjk3RkY5NUExMTFFNTgyQjNGOEVCRjczQjU5QjQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0IzMjk4MDA5NUExMTFFNTgyQjNGOEVCRjczQjU5QjQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozQjMyOTdGRDk1QTExMUU1ODJCM0Y4RUJGNzNCNTlCNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozQjMyOTdGRTk1QTExMUU1ODJCM0Y4RUJGNzNCNTlCNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp9dIMUAAAF2SURBVHjalNQ9KEVhHMfxc6/jJaK8lGS5C4uFgQxCUYgkSsnCIC9JYVE2iUVJFgwGLwPC4CUvKbqTjUUGymBgUJRSN7q+f/1vnXQ793l+9alzht+9z3nO/zmBaH/pleM4BWjFvWORIApRhDDKbcv1eEAeLlBnU35CFW6QiSN0mJYlr6iFPH8qttBnWpZ8oAkHSMIyJkzLki+0Yw0BzGJOrxOWJd/owbzej2NVV5OwLIliDJN6LT+2hzSTciwzGMCPDtEJskzLkhV0IYIaXCLftCzZQTM+UabTGAow2zYTWYFj5MpUBh27JHtWG7Epy7LPkI07NJiWu7GPdFyjGs8m5RGs65LP9RS+mez2FBZ0PLfRojv+F9dn5hcxpPdLGNZh8Z2wFGx6itMY/F+M988Z2JWd1Jke1WXHjbeco1+RSj1Zvdjw25BYWT6CpyjRM92Jw0SvQcrFWgzhXU9P2OTlu57iCxpxazpyrn7o5d214dFm0H8FGADhgkq6XC/KgAAAAABJRU5ErkJggg==" class="limit-free-more-p2" alt=""/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="frees-box">
+                            <div class="frees">
+                                <ul class="avg-3 books">
+                                    <li>
+                                        <a  href="#" class="book">
+                                            <div class="book-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/book.png"/>
+                                            </div>
+                                            <p class="book-tit">学长的夏天</p>
+                                            <p class="book-txt">优美夏子</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" class="book">
+                                            <div class="book-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/book.png"/>
+                                            </div>
+                                            <p class="book-tit">学长的夏天</p>
+                                            <p class="book-txt">优美夏子</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a  href="#" class="book">
+                                            <div class="book-logo">
+                                                <img  class="swiper-lazy" data-src="public/images/book.png"/>
+                                            </div>
+                                            <p class="book-tit">学长的夏天</p>
+                                            <p class="book-txt">优美夏子</p>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                            <a href="#" class="limit-free-more">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MkZBNDNBQTU5NUExMTFFNUI2NzNEMDk3Q0ZFRTA3OTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkZBNDNBQTY5NUExMTFFNUI2NzNEMDk3Q0ZFRTA3OTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyRkE0M0FBMzk1QTExMUU1QjY3M0QwOTdDRkVFMDc5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyRkE0M0FBNDk1QTExMUU1QjY3M0QwOTdDRkVFMDc5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps0uGuUAAARHSURBVHjazJl7aI1xGMffvTuYuYwy5FbGmuvcJhrFcidlrhlKy2VuK4pQiD/WlD9cslHWkEvGiEguEVJy3eSaGpHmbkPWmB3fx56jX0+/95z3Pe/ZOXvq0/bev+f3Pr/n+T3PG+Vd3N9wYbFgJEgFg0ACiAdx4BeoAF/Bc3AP3AXXQFWwD4wKQnAUGAcywSQW7cR+grOgAFwCXicXmw4flg4egPNgRhBifW9lJrgASsHU+hDcFVwBJ0E/I3TWFxSDyyDRzgUeG+dkgD2ghcXxP+A2uAkegdfgG9+7FegABoDBTLTmHqPAfZAFDgcrmHw1B6y1OE7C8tgXPwX40YX8lybkbLAE9BDnNAeHQDI/0+vEJUjsbguxb8Fc0A1stRAbA5pq9n8EO0FvMI/vJW0N2MsabAvO4VGQth/04tdWY3HtQlDJIW2ZxTm1PJo9+Z66e+TYDWtz+GbST1eA/ACvvjEL9Y1uNcfk6gDX0eDs0vg3zZ+j/kY4kSeYFJthQyxZe+EKTUA7G9fl8zP+iP17ORlZCs5n51dtHSgy6t/oGdliH0WmfVaC0zm8qEavY5sRPsuTLgBLU5OLqUSFzZoZneU0dYbAsjWRZ5MvavgEj+aso9oGTgDhNhK7Wuyj2DxWFbxInPCME0Kk7CCv8FRb4BNMs3qCxpdqIii4ljWoRivDpiR4BGgmwtgxI/J2WIQ5Gtg0EpwiTrwDPjQAwZ/BLbFvmMmVghTcUEwKHuDhfK5aSYgf2sViVUhlUnmAax+K7QSPJnW+CrHgG36OUcUxHryzOP5Gpn6TF9mqVYTxlVP1ssrP8e8yVZscQtzUeTLoVzu8ptbPMbkYMk3dr3AhmCri5fzXjlFZtN3P8dZiu9LD/hOn7Ozs8jXT6uqAZtWnG71Aqb+T2H5PgstAksjbbu03N1BCUVWr9sTkPoNqQxtQHE6VLmRyeS4Ft2kAYknDEJnUSPBV0euK5nIl0pYhajzSeM3kf86Kk5e6DG9uzeSiVzXSWOUTJde+Sdx7iJRRz6K7Jvr8L/OjeA2RLJJATxtdnVAbucFLEV5Lud3l9Y0w1W1bNE6/IwKjG6fJBRt9taXqp8U8AaXjLwmz4C/gjLJ9XN2WnZ8Edo0WmkZKURhFNwKT+dnn1HJNRoIyLu2lTx0J80hTpqRe9GlZW+pCF4nL1YimorDQ5eJIF76aOb1AZ+uNur6WtPngqVHXMDRdCs3kaPCD3S3ajWAvu0Cu5lhHo667+Zi7NPEOhLYFK7nnUMDlExl9L5lo5wZ2viLRaO7xs1ykiUGfs27zQqqcV2rkey1ZVB8w3LD+ZEBG/bNToRBMRm1Y6myOqqdJRhNslp3mjV0/fAHGgOlG3YeXUBmF0Clgmt1Ok5OJ4+XkQoUjfVg84aAUkmVUEQ/AQA5dts0TxAOpaLzIxHKrK4UbMklchRMxXIG/4/hewiX/9SB/6D/7K8AArOfpUWLP5FEAAAAASUVORK5CYII=" class="limit-free-more-p1" alt=""/>
+                                更多限时免费内容
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAaCAYAAABozQZiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0IzMjk3RkY5NUExMTFFNTgyQjNGOEVCRjczQjU5QjQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0IzMjk4MDA5NUExMTFFNTgyQjNGOEVCRjczQjU5QjQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozQjMyOTdGRDk1QTExMUU1ODJCM0Y4RUJGNzNCNTlCNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozQjMyOTdGRTk1QTExMUU1ODJCM0Y4RUJGNzNCNTlCNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp9dIMUAAAF2SURBVHjalNQ9KEVhHMfxc6/jJaK8lGS5C4uFgQxCUYgkSsnCIC9JYVE2iUVJFgwGLwPC4CUvKbqTjUUGymBgUJRSN7q+f/1vnXQ793l+9alzht+9z3nO/zmBaH/pleM4BWjFvWORIApRhDDKbcv1eEAeLlBnU35CFW6QiSN0mJYlr6iFPH8qttBnWpZ8oAkHSMIyJkzLki+0Yw0BzGJOrxOWJd/owbzej2NVV5OwLIliDJN6LT+2hzSTciwzGMCPDtEJskzLkhV0IYIaXCLftCzZQTM+UabTGAow2zYTWYFj5MpUBh27JHtWG7Epy7LPkI07NJiWu7GPdFyjGs8m5RGs65LP9RS+mez2FBZ0PLfRojv+F9dn5hcxpPdLGNZh8Z2wFGx6itMY/F+M988Z2JWd1Jke1WXHjbeco1+RSj1Zvdjw25BYWT6CpyjRM92Jw0SvQcrFWgzhXU9P2OTlu57iCxpxazpyrn7o5d214dFm0H8FGADhgkq6XC/KgAAAAABJRU5ErkJggg==" class="limit-free-more-p2" alt=""/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--限免END-->
+
+
+    <div class="panel">
+        <div class="panel-hd">
+            <img src="public/images/free2.png" class="panel-hd-icon-free" alt=""/>
+            <h2 class="panel-hd-tit">热门视频</h2>
+            <a href="#" class="panel-hd-more">更多热门视频</a>
+        </div>
+        <div class="panel-bd">
+            <ul class="avg-2 videos">
+                <li>
+                    <a href="#" class="video">
+                        <div class="video-logo">
+                            <div class="label-play-video"><img src="public/images/play.png" alt=""/></div>
+                            <img data-original="public/images/video.png"/>
+                        </div>
+                        <p class="video-tit">花千骨</p>
+                        <p class="video-txt">同名热门小说改编</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="video">
+                        <div class="video-logo">
+                            <div class="label-play-video"><img src="public/images/play.png" alt=""/></div>
+                            <img data-original="public/images/video.png"/>
+                        </div>
+                        <p class="video-tit">花千骨</p>
+                        <p class="video-txt">同名热门小说改编</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="video">
+                        <div class="video-logo">
+                            <div class="label-play-video"><img src="public/images/play.png" alt=""/></div>
+                            <img data-original="public/images/video.png"/>
+                        </div>
+                        <p class="video-tit">花千骨</p>
+                        <p class="video-txt">同名热门小说改编</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="video">
+                        <div class="video-logo">
+                            <div class="label-play-video"><img src="public/images/play.png" alt=""/></div>
+                            <img data-original="public/images/video.png"/>
+                        </div>
+                        <p class="video-tit">花千骨</p>
+                        <p class="video-txt">同名热门小说改编</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-hd">
+            <img src="public/images/free2.png" class="panel-hd-icon-free" alt=""/>
+            <h2 class="panel-hd-tit">热歌金曲</h2>
+            <a href="#" class="panel-hd-more">更多热歌金曲</a>
+        </div>
+        <div class="panel-bd">
+            <ul class="avg-4 musics">
+                <li>
+                    <a  href="#" class="music">
+                        <div class="music-logo">
+                            <div class="label-play-music"><img src="public/images/play.png" alt=""/></div>
+                            <img data-original="public/images/music.png"/>
+                        </div>
+                        <p class="music-tit">第三人称</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="music">
+                        <div class="music-logo">
+                            <div class="label-play-music"><img src="public/images/play.png" alt=""/></div>
+                            <img data-original="public/images/music.png"/>
+                        </div>
+                        <p class="music-tit">第三人称</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="music">
+                        <div class="music-logo">
+                            <div class="label-play-music"><img src="public/images/play.png" alt=""/></div>
+                            <img data-original="public/images/music.png"/>
+                        </div>
+                        <p class="music-tit">第三人称</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="music">
+                        <div class="music-logo">
+                            <div class="label-play-music"><img src="public/images/play.png" alt=""/></div>
+                            <img data-original="public/images/music.png"/>
+                        </div>
+                        <p class="music-tit">第三人称</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="panel">
+        <div class="panel-hd">
+            <img src="public/images/free2.png" class="panel-hd-icon-free" alt=""/>
+            <h2 class="panel-hd-tit"> 精彩图书</h2>
+            <a href="#" class="panel-hd-more">更多精彩图书</a>
+        </div>
+        <div class="panel-bd">
+            <ul class="avg-3 books">
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="panel">
+        <div class="panel-hd">
+            <img src="public/images/free2.png" class="panel-hd-icon-free" alt=""/>
+            <h2 class="panel-hd-tit">火爆热游</h2>
+            <a href="#" class="panel-hd-more">更多火爆热游</a>
+        </div>
+        <div class="panel-bd">
+            <ul class="avg-4 apps">
+                <li>
+                    <a  href="#" class="app">
+                        <div class="app-logo">
+                            <img data-original="public/images/game.png"/>
+                        </div>
+                        <p class="app-tit">愤怒的小鸟3</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="app">
+                        <div class="app-logo">
+                            <img data-original="public/images/game.png"/>
+                        </div>
+                        <p class="app-tit">愤怒的小鸟3</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="app">
+                        <div class="app-logo">
+                            <img data-original="public/images/game.png"/>
+                        </div>
+                        <p class="app-tit">愤怒的小鸟3</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="app">
+                        <div class="app-logo">
+                            <img data-original="public/images/game.png"/>
+                        </div>
+                        <p class="app-tit">愤怒的小鸟3</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="app">
+                        <div class="app-logo">
+                            <img data-original="public/images/game.png"/>
+                        </div>
+                        <p class="app-tit">愤怒的小鸟3</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="app">
+                        <div class="app-logo">
+                            <img data-original="public/images/game.png"/>
+                        </div>
+                        <p class="app-tit">愤怒的小鸟3</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="app">
+                        <div class="app-logo">
+                            <img data-original="public/images/game.png"/>
+                        </div>
+                        <p class="app-tit">愤怒的小鸟3</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="app">
+                        <div class="app-logo">
+                            <img data-original="public/images/game.png"/>
+                        </div>
+                        <p class="app-tit">愤怒的小鸟3</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-hd">
+            <img src="public/images/free2.png" class="panel-hd-icon-free" alt=""/>
+            <h2 class="panel-hd-tit">精品动漫</h2>
+            <a href="#" class="panel-hd-more">更多精品动漫</a>
+        </div>
+        <div class="panel-bd">
+            <ul class="avg-3 books">
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+                <li>
+                    <a  href="#" class="book">
+                        <div class="book-logo">
+                            <img data-original="public/images/book.png"/>
+                        </div>
+                        <p class="book-tit">学长的夏天</p>
+                        <p class="book-txt">优美夏子</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        var ads = new Swiper('.ads',{
+            autoplay: 3000,
+            loop: true,
+            lazyLoading : true,
+            pagination : '.ads-swiper-pagination'
+        });
+        //五类图片宽高计算
+        var cls = ['.video-logo', '.app-logo', '.book-logo', '.music-logo', '.comic-logo'];
+        var radios = [0.66666, 1, 1.3333, 1, 0.66666];
+        $.each(cls, function(i, el){
+            var $el = $(el);
+            $el.each(function(){
+                $(this).height($(this).width() * radios[i]);
+//                console.log($(this).width() * radios[i])
+            })
+
+        });
+        //图片懒加载
+        $('img[data-original]').lazyload({
+            data_attribute:'original'
+        })
+
+        //mask遮罩
+/*        $(".mask").on("touchstart",function(e){
+            var el = e.target;
+            if(!$(el).hasClass('mask')){
+                return ;
+            }
+            e.preventDefault();
+        });*/
+
+        //权益介绍
+        var $ellipse = $(".ellipse");
+        function toggle(elem){
+            elem.hasClass("show")?elem.removeClass("show"):elem.addClass("show")
+        }
+        if($(".ellipse-clip").height() == $(".ellipse-original").height()){
+            $(".js-legal-oper").hide();
+        }else{
+            $(".js-legal-oper").on("touchstart", function(){
+                toggle($ellipse);
+            });
+        }
+
+
+
+        var h  = $(".limit-free .swiper-pagination").height();
+        function refresh(swiper){
+            var h1 = swiper.slides[swiper.activeIndex].offsetHeight + h ;
+            swiper.container[0].style.height=h1+'px';
+        }
+
+        var limitFree = new Swiper('.limit-free',{
+            pagination : '.limit-free-pagination',
+            paginationClickable :true,
+            lazyLoading : true,
+            paginationBulletRender: function (index, className) {
+                var name = "";
+                switch (index) {
+                    case 0: name='图书';break;
+                    case 1: name='游戏';break;
+                    case 2: name='视频';break;
+                    case 3: name='音乐';break;
+                    default: name='动漫';
+                }
+                return '<p class="' + className + '"><span class="limit-free-slider-tit">' + name + '</span></p>';
+            },
+            onInit: function(swiper){
+                refresh(swiper)
+            },
+            onSlideChangeEnd: function(swiper){
+                refresh(swiper)
+            }
+        });
+
+//        var swiper = new Swiper(".js-scrolls",{
+//            slidesPerView : 'auto'
+//        });
+
+        $(".mask").on("touchmove", function(e){
+            e.preventDefault();
+        });
+        $(".header-user-nav a").on("click",function(e){
+            $(".js-mask-login").show();
+        });
+        $(".login-close").on("click",function(e){
+            $(".js-mask-login").hide();
+            return false;
+        });
+    })
+</script>
+</html>

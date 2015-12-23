@@ -1,0 +1,92 @@
+html{
+	font-size: 25px;
+}
+body{
+	line-height: 1;
+}
+@media only screen and (max-width: 215px) {
+	html {
+		font-size: 25px
+	}
+}
+@media only screen and (min-width: 216px) and (max-width: 251px) {
+	html {
+		font-size: 30px
+	}
+}
+@media only screen and (min-width: 252px) and (max-width: 287px) {
+	html {
+		font-size: 35px
+	}
+}
+@media only screen and (min-width: 288px) and (max-width: 323px) {
+	html {
+		font-size: 40px
+	}
+}
+@media only screen and (min-width: 324px) and (max-width: 359px) {
+	html {
+		font-size: 45px
+	}
+}
+@media only screen and (min-width: 360px) and (max-width: 395px) {
+	html {
+		font-size: 50px
+	}
+}
+@media only screen and (min-width: 396px) and (max-width: 431px) {
+	html {
+		font-size: 55px
+	}
+}
+@media only screen and (min-width: 432px) and (max-width: 467px) {
+	html {
+		font-size: 60px
+	}
+}
+@media only screen and (min-width: 468px) and (max-width: 503px) {
+	html {
+		font-size: 65px
+	}
+}
+@media only screen and (min-width: 504px) and (max-width: 539px) {
+	html {
+		font-size: 70px
+	}
+}
+@media only screen and (min-width: 540px) and (max-width: 575px) {
+	html {
+		font-size: 75px
+	}
+}
+@media only screen and (min-width: 576px) and (max-width: 611px) {
+	html {
+		font-size: 80px
+	}
+}
+@media only screen and (min-width: 612px) and (max-width: 647px) {
+	html {
+		font-size: 85px
+	}
+}
+@media only screen and (min-width: 648px) and (max-width: 683px) {
+	html {
+		font-size: 90px
+	}
+}
+@media only screen and (min-width: 684px) and (max-width: 719px) {
+	html {
+		font-size: 95px
+	}
+}
+@media only screen and (min-width: 720px) {
+	html {
+		font-size: 100px
+	}
+}
+@media (device-width : 375px) and (-webkit-min-device-pixel-ratio : 2){
+    html{font-size: 46.875px;}
+}
+@media (device-width : 414px) and (-webkit-min-device-pixel-ratio : 3){
+    html{font-size: 57.57px;}
+}

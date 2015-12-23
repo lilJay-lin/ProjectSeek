@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- No Baidu Siteapp transform-->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>动漫阅读</title>
+    <link rel="stylesheet" href="public/css/readComic.min.css"/>
+</head>
+<body>
+<div class="header dis_header">
+
+    <div class="back fl ml10 dis_hide"><a href="javascript:doback(25);"><img src="public/images/back.png"></a>琥珀时间[迷路桃乐丝]</div>
+
+    <div class="fr hua dis_hua" id="pattern" style="position:relative;z-index:9999">
+        <div class="fy fentu_model active" onclick="ft(event);">
+            分图
+            <ul class="patternT" style="display: none;">
+                <li class="ye_model" onclick="yemoshi()">
+                    页模式
+                </li>
+                <li onclick="zhenmoshi()" class="zhen_model">
+                    帧模式
+                </li>
+                <li onclick="hunhemoshi()" class="hunhe_model">
+                    混合模式
+                </li>
+            </ul>
+        </div>
+        <div class="jz juanzhi_model" onclick="jz(event);">
+            卷轴
+        </div>
+    </div>
+</div>
+
+<div class="progress hidden">
+    <div class="left">
+        <div id="bar">
+            <div class="grey">
+            </div>
+            <div class="orange" style="width:0">
+            </div>
+            <div id="target" class="circle">
+                        <span>
+                        </span>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+                <span class="target  dqy">
+                    1
+                </span>
+        /
+                <span class="zys">
+                </span>
+    </div>
+</div>
+<div class="footer">
+    <div style="display:table;width:100%;">
+        <div id="fangye" class="ftab">
+            <img src="public/images/yd_page.png">
+            <p>
+                翻页
+            </p>
+        </div>
+        <div id="menu" class="ftab" onclick="toDir()">
+            <img src="public/images/yd_list.png">
+            <p>
+                目录
+            </p>
+        </div>
+    </div>
+</div>
+<div class="yema">
+    第
+            <span class="dqy">
+                1
+            </span>
+    页
+            <span class="dqy">
+                1
+            </span>
+    /
+            <span class="zys">
+            </span>
+</div>
+
+<!--上一话请求URl 和 下一行URL-->
+<p class="hidden preurl">
+
+</p>
+<p class="hidden nexturl">
+
+</p>
+<!--平台把json数据放在此便签下-->
+<p style="display:none" id="cmepubdata">
+        [{"fileName":"zkjcp.json","url":"http://localhost:8080/comic"},{"fileName":"k00000.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866224_75866223&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388352&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=aa14d3bb8dd45f1095dbd27856062773&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00010.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866220_75866219&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388352&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=15d5136bb2ecb371f3185051161ad17e&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00020.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866218_75866217&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388353&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=2fa3bf0731d716f57d295b203242077e&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00030.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866222_75866221&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388353&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=d1d9c8ffd79564d40c41d3548a8cf964&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00040.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866226_75866225&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388353&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=6ae03ed8fa1cb8ea7e22a28a301d6774&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00050.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866228_75866227&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388354&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=78c41032164c5b460f9df30c704cb3ed&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00060.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866230_75866229&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388354&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=d56797b5829fcd7e45112a72b3f128c7&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00070.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866232_75866231&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388354&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=2ef73ba43f0f31bb9b2ceffbe5ead7c2&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00080.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866234_75866233&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388355&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=7c824f89fc178b0dfae7a3f6cf9973f8&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00090.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866236_75866235&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388355&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=a34bbf8981b469f5765228f733dd038a&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00100.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866238_75866237&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388355&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=17b79189c84112cdcb8e69ff934723a1&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00110.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866240_75866239&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388355&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=2c92f97a9f7b861f7638302e44da38fb&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00120.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866242_75866241&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388356&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=05e9fafd5cd340df4800e64d58095cd9&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00130.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866244_75866243&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388356&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=bef3cb6c66d2fb72f351f0890bf8a896&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00140.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866246_75866245&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388356&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=c8862f26284b48c32aae0fd28593a70b&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00150.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866248_75866247&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388357&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=39db107a7ec33b9368edc855f8097e17&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00160.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866250_75866249&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388357&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=0c0c6c7aaa3193fe5f8e309c74a0f6fb&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00170.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866252_75866251&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388357&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=6d632e36529f7775bbecf9badc93278b&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00180.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866254_75866253&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388358&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=81708c0203ee07a1818ff1f8c1469b48&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00190.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866256_75866255&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388358&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=308962f9675d5abb9addb4970f541cb0&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00200.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866258_75866257&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388358&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=354cb05c6c33a6b179765a7769a3bd47&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00210.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866260_75866259&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388358&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=efe2aa33aaee7337d1275b10370faee1&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00220.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866262_75866261&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388359&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=af851fc60bfadd35eb155a234efc3bb9&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00230.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866264_75866263&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388359&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=52e7f256d286f9fb350cfff58d7e6b86&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00240.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866266_75866265&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388359&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=37ba2c614a0911a8e11c9f8f9f65a167&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00250.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866268_75866267&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388360&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=40f0842f9c25f2ba0f73e00ecdf2910c&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00260.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866270_75866269&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388360&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=da2ae1f1e30a0b321c7d6908f9342623&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00270.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866272_75866271&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388360&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=6065076ffb78b6a366d147e44761f011&amp;downLoadType=comicOnlinePlay"},{"fileName":"k00280.jpg","url":"http://dl.wap.dm.10086.cn/entry?C=0300000001&amp;ContentID=000002011740&amp;F=75866274_75866273&amp;PI=MDSP2000494825&amp;Time=20151201205948&amp;T=88388361&amp;ORI=99000494825&amp;RPT=1&amp;CH=99000494825&amp;SD=0100000001&amp;DT=2&amp;H=0000&amp;SW=3&amp;DM=1&amp;CI=090000000368&amp;PAT=0&amp;UT=0&amp;AI=ischeckin::false;entranceid::null;portalType::4;sessionId::;platform::01;portal::05;sid::;timestamp::20151201045945;companyid::;&amp;S=b9ca349ac2325c7bd370c815bb5e1b49&amp;downLoadType=comicOnlinePlay"}]
+</p>
+</body>
+<script src="public/js/jquery.min.js"></script>
+<!--<script src="public/js/JCPlayer1.0-wap.js"></script>-->
+<script src="public/js/touch.js"></script>
+<script src="public/js/JCP1.0.js"></script>
+<script>
+
+    var dm = $(this);
+    var urls;
+    var preurl;
+    var nexturl;
+    var dx;
+    $(window).scroll(function() {
+        gdping()
+    });
+
+
+    $(function() {
+
+        var w = $(window).width();
+        var progressw = w * 0.7;
+
+        //此处通过ajax获取json
+        urls =  $("#cmepubdata").text();
+
+        //上章下章地址
+        preurl=$(".preurl").text();
+        nexturl=$(".nexturl").text();
+
+        var url = location.search;
+        var pagenum = 1;
+        var pagenum2 = '';
+
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strstrs = str.split("&");
+
+            for (var i = 0; i < strstrs.length; i++) {
+                if (strstrs[i].indexOf("num=") >= 0) {
+                    pagenum = strstrs[i].split("=")[1];
+                };
+            }
+        }
+
+        if (pagenum == 1) {
+            pagenum2 = '';
+        } else {
+            pagenum2 = pagenum;
+        }
+        try{
+            var jzreg = /readmode=ft;/g;
+            if (jzreg.test(document.cookie)) {
+                $(".fy").addClass('active');
+                $(".jz").removeClass('active');
+                dm.JCPlayer({
+                    urls: urls,
+                    mode: 'horizontal',
+                    dmNum: '.zys',
+                    dmNow: '.dqy',
+                    toNum: pagenum2,
+                    pUnit:preurl,
+                    nUnit:nexturl
+                });
+            } else {
+                $(".jz").addClass('active');
+                $(".fy").removeClass('active');
+                dm.JCPlayer({
+                    urls:urls,
+                    mode:'vertical',
+                    dmNum:'.zys',
+                    dmNow:'.dqy',
+                    toNum: pagenum2,
+                    pUnit:preurl,
+                    nUnit:nexturl
+                });
+            }
+        }catch(e){
+            console.dir('错误' + e.message + '发生在' +   e.lineNumber + '行');
+        }
+
+        setTimeout(function(){
+            $(window).bind("scroll",function(){
+                gdping();
+            });
+        },1000);
+
+        $(".footer").click(function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
+
+        $(".mask").click(function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
+
+
+        $(".patternT").click(function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
+
+        $("#fangye").click(function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+
+            var total = JCPlayer.JCPnum();
+            var nownum=JCPlayer.JCPnow();
+            dx = (nownum- 1) / total * progressw;
+            var offx = dx + "px";
+            $(".orange").css("width", dx + 5);
+            $("#target").css('-webkit-transform', 'translate3d(' + offx + ',0,0)');
+            $(".progress").toggle();
+
+/*            var imgsrc = $(this).find("img").attr("src");
+            if (imgsrc == "public/images/yd_page.png") {
+                $(this).find("p").addClass("hcolor");
+                $(this).find("img").attr("src", "public/images/yd_page.png");
+
+            } else {
+                $(this).find("p").removeClass("hcolor");
+                $(this).find("img").attr("src", "public/images/yd_page.png");
+
+            }*/
+            $(".mask").hide();
+        });
+    });
+
+</script>
+<script>
+    function gdping(){
+        $(".header").hide();
+        $(".footer").hide();
+        $(".progress").hide();
+    }
+    function ft(event) {
+        event.stopPropagation();
+        $(".fy").addClass('active');
+        $(".jz").removeClass('active');
+
+        $(".patternT").hide();
+
+        var pagenumm=$(".dqy").html();
+        if(pagenumm==1){pagenumm=''}
+        dm.JCPlayer({
+            urls: urls,
+            mode: 'horizontal',
+            rm: '1',
+            dmNum: '.zys',
+            dmNow: '.dqy',
+            toNum: pagenumm,
+            pUnit:preurl,
+            nUnit:nexturl
+        });
+        setTimeout(function(){
+            $(window).bind("scroll",function(){
+                gdping();
+            });
+        },1000);
+        var date = new Date();
+        if (/readmode=jz/.test(document.cookie)) {
+            date.setTime(date.getTime()-1);
+            document.cookie = "readmode=jz; expires="+date.toGMTString();
+        }
+        date.setTime(date.getTime()+30*60*1000);
+        document.cookie = "readmode=ft; expires="+date.toGMTString();
+
+    }
+    function jz(event) {
+        event.stopPropagation();
+        var pagenumm=$(".dqy").html();
+        if(pagenumm==1){pagenumm=''}
+        dm.JCPlayer({
+            urls:urls,
+            mode:'vertical',
+            rm:'1',
+            dmNum:'.zys',
+            dmNow:'.dqy',
+            toNum: pagenumm,
+            pUnit:preurl,
+            nUnit:nexturl
+        });
+        $(".patternT").hide();
+        $(".patternT li").removeClass("active");
+        $(".jz").addClass('active');
+        $(".fy").removeClass('active');
+
+        setTimeout(function(){
+            $(window).bind("scroll",function(){
+                gdping();
+            });
+        },1000);
+        var date = new Date();
+        if (/readmode=ft/.test(document.cookie)) {
+            date.setTime(date.getTime()-1);
+            document.cookie = "readmode=ft; expires="+date.toGMTString();
+        }
+        date.setTime(date.getTime()+30*60*1000);
+        document.cookie = "readmode=jz; expires="+date.toGMTString();
+    }
+
+</script>
+
+<script src="public/js/progress.js"></script>
+</html>

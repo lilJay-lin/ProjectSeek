@@ -1,0 +1,50 @@
+
+@global-font-tit-color: #444444;
+@global-font-tip-color: #999999;
+@global-font-tit-size: 0.3rem;
+@global-font-tip-size: 0.24rem;
+
+.music{
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.3rem 0.3rem 0.2rem;
+  margin: 0.1rem 0;
+  & +　& {
+    margin-top: 0rem;
+  }
+}
+.music-logo{
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 0.26rem;
+}
+.music-info{
+  flex: 1;
+}
+
+.music-info-tit{
+  color: @global-font-tit-color;
+  font-size: @global-font-tit-size;
+  margin-bottom: 0.15rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.music-info-art{
+  color: @global-font-tip-color;
+  font-size: @global-font-tip-size;
+}
+
+.music-btn{
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
+  text-align: center;
+  img{
+    vertical-align: middle;
+    width: 0.26rem;
+  }
+}

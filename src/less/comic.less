@@ -1,0 +1,61 @@
+
+@global-font-tit-color: #444444;
+@global-font-tip-color: #999999;
+@global-font-tit-size: 0.3rem;
+@global-font-tip-size: 0.24rem;
+
+
+.comic{
+  background: #ffffff;
+  display: flex;
+  padding: 0.15rem 0.5rem 0.15rem 0.2rem;
+  margin: 0.1rem 0;
+  & +　& {
+    margin-top: 0rem;
+  }
+}
+.comic-logo{
+  width: 1.47rem;
+  height: 2.02rem;
+  margin-right: 0.3rem;
+}
+.comic-info{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+.comic-info-wrap{
+  
+}
+
+.comic-info-tit{
+  color: @global-font-tit-color;
+  font-size: @global-font-tit-size;
+  margin: 0.1rem 0 0.16rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.comic-info-txt,.comic-info-desc,.comic-info-mark{
+  color: @global-font-tip-color;
+  font-size: @global-font-tip-size;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  //max-height: @comic-info-line-height * @global-font-tip-size * @comic-info-line-camp;
+}
+.comic-info-txt{
+  margin-bottom: 0.16rem;
+}
+
+.comic-info-desc{
+  margin-bottom: 0.34rem;
+}
+.comic-info-mark{
+  color:#00ac08;
+  &.over{
+    color: #ff7200;
+  }
+}

@@ -1,0 +1,45 @@
+
+@global-font-tit-color: #444444;
+@global-font-tip-color: #999999;
+@global-font-tit-size: 0.3rem;
+@global-font-tip-size: 0.24rem;
+
+
+@video-info-line-height: 1.6;
+@video-info-line-camp: 2;
+
+.video{
+  background: #ffffff;
+  display: flex;
+  padding: 0.3rem 0.5rem 0.3rem 0.2rem;
+  margin: 0.1rem 0;
+  & +　& {
+    margin-top: 0rem;
+  }
+}
+.video-logo{
+  width: 2.4rem;
+  height: 1.6rem;
+  margin-right: 0.3rem;
+}
+.video-info{
+  flex: 1;
+}
+
+.video-info-tit{
+  color: @global-font-tit-color;
+  font-size: @global-font-tit-size;
+  margin: 0.1rem 0 0.15rem;
+}
+.video-info-desc{
+  color: @global-font-tip-color;
+  font-size: @global-font-tip-size;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: @video-info-line-camp;
+  -webkit-box-orient: vertical;
+  line-height: @video-info-line-height;
+  //max-height: @video-info-line-height * @global-font-tip-size * @video-info-line-camp;
+}
+

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="public/css/migu.min.css"/>
+<link rel="stylesheet" type="text/css" href="public/css/layout.css"/>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <a href="#" class="header-back">
+            <img src="public/images/back2.png" alt=""/>
+        </a>
+        <h1>游戏</h1>
+    </div>
+    <div class="content">
+      <div class="main">
+      <div class="detail">
+        <div class="list">
+          <img src="public/images/app1.png"/>
+          <p>我叫MT</p>
+          <p><span>999.9M</span></p>
+        </div>
+        <div class="line"></div>
+        <div class="clear"></div>
+        <div class="detail_title">简介</div>
+        <div class="detail_txt">
+          经过数轮激烈角逐，新一届美国总统加勒特·沃克（迈克·吉尔 Michael Gill 饰）诞生，自称水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党
+        </div>
+        <div class="arrow"><img src="public/images/arrow_down.png"/></div>
+        <div class="line">&nbsp;</div>
+        <div class="detail_title">简介</div>
+         <div data-zw-widget="scroll" class="zw-scroll" data-scroll="{filterWidth:0}">
+                    <div class="zw-viewport">
+                        <div class="zw-scrolls">
+                            <div class="zw-scroll-item  zw-sitem">
+                                <img src="public/images/img1.png"/>
+                            </div>
+
+                            <div class="zw-scroll-item  zw-sitem">
+                                <img src="public/images/img1.png"/>
+                            </div>
+
+                            <div class="zw-scroll-item zw-sitem">
+                                <img src="public/images/img1.png"/>
+                            </div>
+                            <div class="zw-scroll-item zw-sitem">
+                                <img src="public/images/img1.png"/>
+                            </div>
+                            <div class="zw-scroll-item zw-sitem">
+                                <img src="public/images/img1.png"/>
+                            </div>
+                        </div>
+                    </div>
+              </div>
+        <div class="clear"></div>
+        <div class="line"></div>
+        <div class="detail2_txt">
+          <div class="detail2_txt_title">版本信息</div>
+          <p>更新：2015-05-31</p>
+          <p>版本：2.0.3</p>
+          <p>导演：刘德华</p>
+          <p>厂商：厦门漫乐网络有限公司</p>
+        </div>
+      </div>
+      </div>
+      <div class="down_div"><a href="#">下载</a></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="public/js/jquery.min.js"></script>
+<script>
+!function t(e,o,n){function r(s,a){if(!o[s]){if(!e[s]){var l="function"==typeof require&&require;if(!a&&l)return l(s,!0);if(i)return i(s,!0);var c=new Error("Cannot find module '"+s+"'");throw c.code="MODULE_NOT_FOUND",c}var f=o[s]={exports:{}};e[s][0].call(f.exports,function(t){var o=e[s][1][t];return r(o?o:t)},f,f.exports,t,e,o,n)}return o[s].exports}for(var i="function"==typeof require&&require,s=0;s<n.length;s++)r(n[s]);return r}({1:[function(t,e,o){(function(t){"use strict";var o="undefined"!=typeof window?window.jQuery:"undefined"!=typeof t?t.jQuery:null;if("undefined"==typeof o)throw new Error("Zw UI 1.x requires jQuery ");var n=o.ZWUI||{},r=(o(window),window.document);o("html");n.VERSION="1.0.0",n.DOMWatchers=[],n.DOMReady=!1,n.support={},n.support.transition=function(){var t=function(){var t=r.body||r.documentElement,e={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd otransitionend",transition:"transitionend"};for(var o in e)if(void 0!==t.style[o])return e[o]}();return t&&{end:t}}(),n.utils={},n.utils.parseOptions=n.utils.options=function(t){if(o.isPlainObject(t))return t;var e=t?t.indexOf("{"):-1,n={};if(-1!=e)try{n=new Function("","var json = "+t.substr(e)+"; return JSON.parse(JSON.stringify(json));")()}catch(r){}return n},n.ready=function(t){n.DOMWatchers.push(t),n.DOMReady&&t(document)},o(function(){n.DOMReady=!0,o.each(n.DOMWatchers,function(t,e){e(document)})}),e.exports=n}).call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{}],2:[function(t,e,o){(function(o){var n="undefined"!=typeof window?window.jQuery:"undefined"!=typeof o?o.jQuery:null,r=t("./core"),i=r.support.transition,s=function(t,e){this.$el=n(t),this.configMap=n.extend({},this.configMap,e),this.init()};s.staticMap={scroll:".zw-scroll",scrolls:".zw-scrolls",scrollItem:".zw-scroll-item",viewport:".zw-viewport"},s.prototype.configMap={width:0,filterWidth:.6},s.prototype.stateMap={length:0,$scrolls:null,$scrollItem:null,offsetX:0,offsetY:0,lastTransform:0,minTransform:0,maxTransform:0,move:0,check:0,delta:{x:0,y:0},start:{x:0,y:0}},s.prototype.init=function(){function t(){e.addEvent(),e.stateMap.$scrolls.show(),e.$el.trigger("show.Scroll.zwui")}var e=this,o=s.staticMap,r=(e.configMap,document.documentElement),i=document.body,a=r&r.scrollLeft||i.scrollLeft||0,l=r&r.scrollTop||i.scrollTop||0;e.stateMap=n.extend({},e.stateMap,{$scrolls:e.$(o.scrolls),$scrollItem:e.$(o.scrollItem),$viewport:e.$(o.viewport),offsetX:a,offsetY:l});var c=e.stateMap;c.length=c.$scrollItem.length,c.pfx=function(){var t={WebkitTransition:"-webkit-",MozTransition:"-moz-",OTransition:"-o-",transition:""};for(var o in t)if("undefined"!=e.$el[0].style[o])return t[o]}(),c.styleTransform=""===c.pfx?"transform":c.pfx.replace(/-/g,"")+"Transform",e.$el.on("ready.Scroll.zwui",n.proxy(t,e)),this.create()},s.prototype.create=function(){var t=this,e=t.stateMap,o=(t.configMap,e.length),n=t.configMap.width;if(o>1){var r=e.$viewport.width(),i=e.$scrollItem.eq(0).innerWidth();n=/%/g.test(n)?r*parseFloat(n)/100:n?n*t.getRootSize():i;var s=o*n+t.configMap.filterWidth*t.getRootSize();e.minTransform=-(s>r?s-r:0),e.maxTransform=0,e.$scrolls.width(s),e.$scrollItem.css({display:"block","float":"left",width:n+"px"}),t.$el.trigger("ready.Scroll.zwui")}},s.prototype.getRootSize=function(){var t,e,o=document.documentElement;return o||(e=n('<div style="font-size:1rem"/>'),n(document.body).append(e),o=e[0]),t=parseInt(window.getComputedStyle(o).fontSize),e&&e.remove(),isNaN(t)?10:t},s.prototype.addEvent=function(){var t=this;t.$el.on("touchstart.Scroll.zwui",n.proxy(t.startMove,t)),t.$el.on("touchmove.Scroll.zwui",n.proxy(t.durMove,t)),t.$el.on("touchend.Scroll.zwui",n.proxy(t.endMove,t))},s.prototype.startMove=function(t){var e=this,o=e.stateMap.start,n=e.stateMap;t.originalEvent&&(t=t.originalEvent);var r=t.touches[0];n.lastTransform=e.getTransform(),o.x=r.pageX||r.clientX+n.offsetX,o.y=r.pageY||r.clientY+n.offsetY,n.move=n.check=1},s.prototype.durMove=function(t){var e=this,o=e.stateMap,n=o.start,r=o.delta;if(o.move){t.originalEvent&&(t=t.originalEvent);var i=t.changedTouches[t.changedTouches.length-1],s=i.pageX||i.clientX+o.offsetX,a=i.pageY||i.clientY+o.offsetY;if(r.x=s-n.x,r.y=a-n.y,o.check&&(o.move=Math.abs(r.x)>Math.abs(r.y)),o.check=!1,o.move){t.preventDefault();var l=o.lastTransform+r.x;l=l>o.maxTransform?o.maxTransform:l<o.minTransform?o.minTransform:l,e.position(l,0)}}},s.prototype.endMove=function(t){var e=this,o=e.stateMap,n=o.start,r=o.delta;o.move=o.check=!1,n.x=n.y=r.x=r.y=0},s.prototype.position=function(t,e,o){var n=this.stateMap,r=n.$scrolls;t=isNaN(t)?0:t,i&&(r.css(n.pfx+"transition-duration",e/1e3+"s"),r.css(n.pfx+"transform","translate3d("+t+"px,0,0)"))},s.prototype.getTransform=function(){var t=this.stateMap.$scrolls[0].style[this.stateMap.styleTransform],e=t.length>0?parseInt(t.split("translate3d(")[1],10):0;return isNaN(e)?0:e},s.prototype.$=function(t){return this.$el.find(t)},s.prototype.destroy=function(){this.$el.off(".Scroll.zwui")};var a=function(){this.each(function(){var t=n(this),e=s.staticMap.scroll,o=t.is(e)&&t||t.closest(e),i=r.utils.parseOptions(o.data("scroll"));new s(o[0],i);return this})};n.fn.scroll=a,r.ready(function(t){n('[data-zw-widget="scroll"]',t).scroll()}),e.exports=r.scroll=s}).call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./core":1}],3:[function(t,e,o){var n=t("./core");t("./ui.scroll"),e.exports=$.ZWUI=n},{"./core":1,"./ui.scroll":2}]},{},[3]);
+</script>
+<script>
+  
+  $('.arrow').click(function(){
+	if($(this).children('img').attr("src")=="public/images/arrow_down.png")
+	{
+        $('.detail_txt').css("height","auto");
+		$(this).children('img').attr("src","public/images/arrow_up.png")
+	}
+	else {
+        $('.detail_txt').css("height","0.72rem");
+		$(this).children('img').attr("src","public/images/arrow_down.png")
+	}
+  });
+  
+  $('.detail_title span').click(function(){
+
+	  if($('.detail_open').is(":hidden")){
+		$('.detail').hide();  
+	    $('.detail_open').show();
+	  }
+	  else{
+		$('.detail_open').hide();  
+	    $('.detail').show();  
+	  }
+	  
+  });
+  
+  $('.detail_set a').click(function(){
+	$('.detail_set a').removeClass("selected");
+	$(this).addClass("selected");  
+  });
+  
+</script>
+</body>
+</html>

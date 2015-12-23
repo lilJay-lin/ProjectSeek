@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="public/css/migu.min.css"/>
+<link rel="stylesheet" type="text/css" href="public/css/layout.css"/>
+    <style>
+        .scrolls{
+            overflow-y: scroll;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <a href="#" class="header-back">
+            <img src="public/images/back2.png" alt=""/>
+        </a>
+        <h1>漫画详情页</h1>
+    </div>
+    <div class="content">
+        <div class="scrolls">
+            <div class="list2">
+                <img src="public/images/app2.png"/>
+                <div class="list2_con">
+                    <p>类别：冒险<span>状态：<strong class="complete">完本</strong></span></p>
+                    <p>作者：尾田荣一郎</p>
+                </div>
+                <p><a href="#">开始看漫画</a></p>
+            </div>
+            <div class="detail">
+                <div class="detail_title">选集<span>最近更新：章节名称></span></div>
+                <div class="detail_set">
+                    <a href="#"><img src="public/images/sub.png"/>1</a><a href="#"><img src="public/images/sub.png"/>2</a><a href="#" class="selected">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a><a href="#">11</a><a href="#">12</a>
+                </div>
+                <div class="clear"></div>
+                <div class="line">&nbsp;</div>
+                <div class="detail_title">简介</div>
+                <div class="detail_txt">
+                    经过数轮激烈角逐，新一届美国总统加勒特·沃克（迈克·吉尔 Michael Gill 饰）诞生，自称水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党
+                </div>
+                <div class="arrow"><img src="public/images/arrow_down.png"/></div>
+                <div class="line">&nbsp;</div>
+            </div>
+            <div class="detail_open">
+                <div class="detail_title">选集<span><img src="public/images/close.png"/></span></div>
+                <div class="detail_set">
+                    <a href="#"><img src="public/images/sub.png"/>1</a><a href="#"><img src="public/images/sub.png"/>2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a><a href="#">11</a><a href="#">12</a><a href="#">13</a><a href="#">14</a><a href="#">15</a><a href="#">16</a><a href="#">17</a><a href="#">18</a><a href="#">19</a><a href="#">20</a><a href="#">21</a><a href="#">22</a><a href="#">23</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="public/js/jquery.min.js"></script>
+<script>
+  $('.arrow').click(function(){
+	if($(this).children('img').attr("src")=="public/images/arrow_down.png")
+	{
+        $('.detail_txt').css("height","auto");
+		$(this).children('img').attr("src","public/images/arrow_up.png")
+	}
+	else {
+        $('.detail_txt').css("height","0.72rem");
+		$(this).children('img').attr("src","public/images/arrow_down.png")
+	}
+  });
+  
+  $('.detail_title span').click(function(){
+
+	  if($('.detail_open').is(":hidden")){
+		$('.detail').hide();  
+	    $('.detail_open').show();
+	  }
+	  else{
+		$('.detail_open').hide();  
+	    $('.detail').show();  
+	  }
+	  
+  });
+  
+  $('.detail_set a').click(function(){
+	$('.detail_set a').removeClass("selected");
+	$(this).addClass("selected");  
+  });
+</script>
+</body>
+</html>

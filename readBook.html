@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- No Baidu Siteapp transform-->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="shortcut icon" href="">
+    <title>目录</title>
+    <style>
+        @charset "utf-8";.book_botoom a,a{text-decoration:none}body,button,dd,dl,dt,footer,h1,h2,h3,h4,input,li,nav,ol,p,textarea,ul{margin:0;padding:0}body,html{height:100%;width:100%}html{font-size:62.5%}body{font-size:16px;line-height:1.5;font-family:'Microsoft Yahei',Simsun;color:#333;background:#fff;-webkit-text-size-adjust:none;min-width:320px}h1,h2,h3,h4,h5,h6{font-size:100%}form{display:inline}ol,ul{list-style:none}a{color:#1a1a1a}a:active,a:focus,a:hover{color:#1c5aa2;text-decoration:none}a:active{color:#aaa}img{vertical-align:middle;border:0;-ms-interpolation-mode:bicubic}textarea{resize:none}.fl{float:left}.fr{float:right}footer .tab>div,i.back{float:left}.hide{display:none}.show{display:block}.ellipsis{white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.break{word-break:break-all;word-wrap:break-word}article,footer,header{display:block;clear:both}header{background-color:#FDEFF6;width:100%}.gotoback{background:url(/public/images/read1.png) no-repeat;display:inline-block;height:35px;margin-left:5px;width:23px;-webkit-background-size:contain;background-size:contain}header,i.back{display:block}.chapter-title{height:35px;line-height:35px;vertical-align:top}.clearfix:after{content:" ";display:block;clear:both;height:0}.clearfix{zoom:1}header{position:relative;height:44px}.book_botoom,footer{position:fixed;bottom:0;z-index:4}footer,footer .tab{height:60px;width:100%}i.back{background:url(../images/back.png) left center no-repeat;padding:28px 0 12px 25px;font-size:1.5rem;margin-left:8px}.content{padding-bottom:60px}footer .tab{background-color:#24262d;font-size:1.3rem;color:#fff}.book_content{padding-bottom:40px;margin:0;padding-left:.5em;padding-right:.5em;font-size:1.7rem}.book_content p{text-indent:2em}.book_botoom{height:42px;line-height:42px;background-color:#FDEFF6;width:100%}.prvechart,.viewchart{width:33%;float:left;text-align:center}.book_botoom a{color:#00f}.viewchart{left:10px}.nextchart{float:left;width:30%;text-align:center}
+        .scrolls{height:100%;overflow-y: scroll}
+    </style>
+</head>
+<body>
+<header>
+    <i class="gotoback"></i><label class="chapter-title">第十一章 灵魂之花</label>
+</header>
+<div class="book_content">
+<!--这里放置内容-->
+</div>
+<footer class="book_botoom">
+    <span class="nextchart">
+        <label>
+            <a href="#" style="color: blue;">下一章</a>
+        </label>
+    </span>
+    <span class="nextchart" style="width: 3px;">|</span>
+    <span class="prvechart" >
+        <label>
+            <a
+        href="#" style="color: blue;">上一章</a>
+        </label>
+    </span>
+    <span class="prvechart" style="width: 3px">|</span>
+    <span class="viewchart">
+        <label>
+            <a href="#" style="color: blue;">目录</a>
+        </label>
+    </span>
+</footer>
+</body>
+<script src="public/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+    });
+    function disabledgetChapter(){
+        $(".nextchart a").removeAttr('href');
+        $(".prvechart a").removeAttr('href');
+        $(".viewchart a").removeAttr('href');
+        $(".book_botoom a").css("color","#A3A3A3");
+    }
+
+    function enabledgetChapter(){
+        $(".nextchart a").attr('href',"javascript:getChapter('next');");
+        $(".prvechart a").attr('href',"javascript:getChapter('prev');");
+        $(".viewchart a").attr('href',"javascript:gotoDetail();");
+
+        $(".book_botoom a").css("color","blue");
+    }
+
+</script>
+</html>

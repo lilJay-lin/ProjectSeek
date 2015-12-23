@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>musicPlayer</title>
+    <link rel="stylesheet" type="text/css" href="public/css/migu.min.css"/>
+    <link rel="stylesheet" type="text/css" href="public/css/musicPlayer.css"/>
+    <script src="public/js/jquery-1.11.3.min.js"></script>
+    <script src="public/js/player.min.js"></script>
+    <script>
+
+
+        $(document).ready(function(){
+
+            var $play = $('.paly_icon');
+            var $cur_time=$('.current_time');
+            var $all_time=$('.all_time');
+            var $current_process=$('.current_process');
+            var $all_process=$('.all_process');
+            // 初始化一个MuPlayer的实例。注意，我们默认使用了_mu全局命名空间。
+            var player = new _mu.Player({
+                // baseDir是必填初始化参数，指向刚才签出的MuPlayer静态资源目录
+                baseDir: 'public/js',
+                mode: 'list'
+            });
+            var reset=function(){
+                $play.removeClass('playing').removeClass('pause');
+                $play.children('img').attr('src', 'public/images/play_icon.png');
+                $current_process.css('width','0');
+                $cur_time.text('00:00');
+            };
+            var addMusic=function(){
+                player.add('public/mp3/hello.public/mp3');
+            };
+            // 通过add方法添加需要播放的音频，并调用play方法开始播放。
+
+            addMusic();
+
+
+            $play.click(function(){
+                var $this=$(this);
+                if ($this.hasClass('playing')) {
+                    player.pause();
+                } else {
+                    player.play();
+
+                }
+            });
+            player.on('pause', function() {
+                $play.removeClass('playing');
+                $play.addClass('pause');
+                $play.children('img').attr('src', 'public/images/play_icon.png');
+            }).on('playing',function(){
+                $play.removeClass('pause');
+                $play.addClass('playing');
+                $play.children('img').attr('src', 'public/images/pause_icon.png');
+            }).on('timeupdate', function() {
+                var $progress=player.curPos()/player.duration()*100;
+                $cur_time.text(player.curPos(true));
+                $all_time.text(player.duration(true));
+                $current_process.css('width',$progress+'%');
+            });
+            player.on("ended", function(){
+               console.log('ended');
+                reset();
+            });
+
+            //弹出和隐藏下载音乐弹框
+            $('.download_icon').click(function(){
+                $('.download_area').animate({bottom:'0rem'});
+            });
+            $('.download_song_name_icon').click(function(){
+                $('.download_area').animate({bottom:'-6rem'});
+            });
+
+            $('.quality').click(function(){
+                $('.quality_icon').hide();
+                $(this).children('.quality_icon').show();
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <div class="back_btn">
+        <img src="public/images/back_btn.png" alt="返回">
+    </div>
+    <div class="music_title">青花瓷</div>
+</header>
+<div class="main">
+    <div class="main_img">
+        <img src="public/images/main.png" alt="">
+    </div>
+
+
+</div>
+<div class="music_info_wrapper">
+    <div class="music_detail">
+        <div class="music_detail_info">
+            <div class="music_singer">周杰伦</div>
+            <div class="music_name">青花瓷</div>
+        </div>
+        <a class="download_icon">
+            <img src="public/images/download_icon.png" alt="">
+        </a>
+    </div>
+    <div class="process_bar">
+        <span class="all_process"></span>
+        <span class="current_process"></span>
+    </div>
+    <div class="process_time">
+        <span class="current_time">00:00</span>/<span class="all_time">00:00</span>
+    </div>
+    <div class="paly_icon pause">
+        <img src="public/images/play_icon.png" alt="play">
+    </div>
+</div>
+<div class="download_area">
+    <div class="download_song_name">
+        <div class="download_song_name_text">
+            菊花台-周杰伦
+        </div>
+        <div class="download_song_name_icon">
+            <img src="public/images/x.png" alt="">
+        </div>
+    </div>
+    <div class="quality standard">
+        <div class="quality_text">标准音质</div>
+        <div class="quality_icon">
+            <img src="public/images/right.png" alt="">
+        </div>
+    </div>
+    <div class="quality hd">
+        <div class="quality_text">高清音质</div>
+        <div class="quality_icon">
+            <img src="public/images/right.png" alt="">
+        </div>
+    </div>
+    <div class="quality Lossless">
+        <div class="quality_text">无损音质</div>
+        <div class="quality_icon">
+            <img src="public/images/right.png" alt="">
+        </div>
+    </div>
+    <div class="download_btn_wrapper">
+        <div class="download_btn">
+          下载
+        </div>
+    </div>
+    
+</div>
+</body>
+
+</html>

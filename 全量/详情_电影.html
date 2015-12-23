@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="public/css/layout.css"/>
+<link rel="stylesheet" href="public/css/video_play.min.css"/>
+<script src="public/js/video.dev.js"></script>
+	<style>
+		.video-mask{position: absolute;top:0;left:0;right:0;bottom:0;z-index: 50;}        .detail_set a{  padding: .2rem 0;margin:0 0.15rem 0.1rem 0 ;  width: 17%;font-size:0.3rem;overflow:hidden;text-overflow: ellipsis;white-space: nowrap}
+	</style>
+</head>
+<body>
+<div class="page">
+	<div class="header">
+		<a href="#" class="header-back">
+			<img src="public/images/back2.png" alt=""/>
+		</a>
+		<h1>电影</h1>
+	</div>
+    <div class="content">
+		<div class="scrolls">
+			<div class="video-box">
+				<div class="video-mask"></div>
+				<video id="video" class="video-js vjs-default-skin"
+					   preload="true" width="100%"
+					   poster="public/images/1.png"
+					   data-setup="{}" draggable="true" contenteditable="false" dropzone="move">
+				</video>
+			</div>
+<!--			<div class="detail">
+				<div class="detail2_txt">
+					<div class="detail2_txt_title">西游记大圣归来</div>
+					<p>地区：内地</p>
+					<p>类型：爱情</p>
+					<p>导演：刘德华</p>
+					<p>主演：刘德华、成龙、张智霖</p>
+				</div>
+				<div class="line"></div>
+				<div class="detail_title">简介</div>
+				<div class="detail_txt">
+					经过数轮激烈角逐，新一届美国总统加勒特·沃克（迈克·吉尔 Michael Gill 饰）诞生，自称水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党
+				</div>
+				<div class="arrow"><img src="public/images/arrow_down.png"/></div>
+				<div class="line">&nbsp;</div>
+			</div>-->
+			<div class="detail">
+				<div class="detail_title">选集<span>最近更新：章节名称></span></div>
+				<div class="detail_set">
+					<a href="#"><img src="public/images/sub.png"/>精彩平头</a><a href="#"><img src="public/images/sub.png"/>2</a><a href="#" class="selected">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a><a href="#">11</a><a href="#">12</a>
+				</div>
+				<div class="clear"></div>
+				<div class="line">&nbsp;</div>
+				<div class="detail_title">简介</div>
+				<div class="detail_txt">
+					经过数轮激烈角逐，新一届美国总统加勒特·沃克（迈克·吉尔 Michael Gill 饰）诞生，自称水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党
+				</div>
+				<div class="arrow"><img src="public/images/arrow_down.png"/></div>
+				<div class="line">&nbsp;</div>
+			</div>
+			<div class="detail_open">
+				<div class="detail_title">选集<span><img src="public/images/close.png"/></span></div>
+				<div class="detail_set">
+					<a href="#"><img src="public/images/sub.png"/>1</a><a href="#"><img src="public/images/sub.png"/>2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a><a href="#">11</a><a href="#">12</a><a href="#">13</a><a href="#">14</a><a href="#">15</a><a href="#">16</a><a href="#">17</a><a href="#">18</a><a href="#">19</a><a href="#">20</a><a href="#">21</a><a href="#">22</a><a href="#">23</a>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+    </div>
+</div>
+<script type="text/javascript" src="public/js/jquery.min.js"></script>
+<script>
+  $('.arrow').click(function(){
+	if($(this).children('img').attr("src")=="public/images/arrow_down.png")
+	{
+        $('.detail_txt').css("height","auto");
+		$(this).children('img').attr("src","public/images/arrow_up.png")
+	}
+	else {
+        $('.detail_txt').css("height","0.72rem");
+		$(this).children('img').attr("src","public/images/arrow_down.png")
+	}
+  });
+  
+  $('.detail_title span').click(function(){
+
+	  if($('.detail_open').is(":hidden")){
+		$('.detail').hide();  
+	    $('.detail_open').show();
+	  }
+	  else{
+		$('.detail_open').hide();  
+	    $('.detail').show();  
+	  }
+	  
+  });
+  
+  $('.detail_set a').click(function(){
+	$('.detail_set a').removeClass("selected");
+	$(this).addClass("selected");  
+  });
+  
+</script>
+<script>
+
+	var hasLoaded = 0;
+
+	var myPlayer = videojs('video');
+
+	$(".vjs-control-content").on('click', function(e){
+		if($('.vjs-fullscreen').length > 0){
+			e.stopPropagation();
+			e.stopImmediatePropagation()
+			myPlayer.exitFullscreen();
+			myPlayer.trigger('fullscreenchange');
+		}
+	});
+
+	//设置视频地址
+	function setVideoUrl(src) {
+		myPlayer.src({ type: "video/mp4", src: src });
+		myPlayer.play();
+		$('.video-mask').hide();
+	}
+	$(".video-mask").on("touchstart", function(e){
+		e.preventDefault();
+		setVideoUrl('http://10.9.14.45:3000/public/1.mp4')
+	})
+
+</script>
+</body>
+</html>

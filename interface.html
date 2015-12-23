@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- No Baidu Siteapp transform-->
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <title>ios接口调试</title><style>
+        body{
+            background: #eeeeee;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <input type = 'text' id="txt"/>
+    <button  id="btn">调起</button>
+</body>
+<script>
+    var btn = document.querySelector("#btn");
+    var txt = document.querySelector("#txt");
+    btn.addEventListener("click", function(){
+        var value = txt.value;
+        window.location = value;
+    }, false)
+</script>
+</html>

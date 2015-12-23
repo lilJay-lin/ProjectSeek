@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<!--<link rel="stylesheet" type="text/css" href="css/migu.min.css"/>-->
+<link rel="stylesheet" type="text/css" href="public/css/layout.css"/>
+<link rel="stylesheet" href="public/css/video_play.min.css"/>
+<script src="public/js/video.dev.js"></script>
+    <script type="text/javascript" src="public/js/jquery.min.js"></script>
+    <style>
+        @media (max-width:320px){html{font-size:312.5%}}
+        .mask,.pop_bg{position:fixed;bottom:0;right:0}img{width:100%;height:auto}.mask{z-index:100;top:0;left:0;background-color:rgba(0,0,0,.8)}.login-box,.login-msg{left:50%;text-align:center}.login-box{position:absolute;top:1.3rem;width:6.3rem;height:7.5rem;-webkit-transform:translate(-50%,0);-ms-transform:translate(-50%,0);transform:translate(-50%,0);border-radius:5px;z-index:102;background-color:#fff;line-height:1;font-size:.3rem}.free-gif-txt,.login-msg,.phonenum{line-height:.8rem}.login-box>h2{text-align:center;color:#383838;font-size:.36rem;font-weight:400}.login-header{position:relative;overflow:hidden;height:1.6rem;width:100%;background:#f1f1f1}.phonenum,.psw-box .psw{padding-left:.25rem;background:#fff}.phonenum{width:4.8rem;height:.8rem;outline:0;border:1px solid #e0e0e0;border-radius:.1rem;margin-bottom:.3rem;-webkit-box-sizing:border-box;box-sizing:border-box;opacity:1}.login-btns,.psw-box{-webkit-box-pack:justify;margin:0 auto}.phonenum::-webkit-input-placeholder{color:#c1c1c1}.psw-box{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;width:4.8rem}.psw-box .psw,.psw-box>.send-psw{font-size:.3rem;display:block;height:.8rem;line-height:.8rem;border-radius:.1rem;opacity:1;border:1px solid #e0e0e0}.psw-box .psw{width:2.4rem;-webkit-box-sizing:border-box;box-sizing:border-box}.psw-box .send-psw,.psw-box .send-psw:active,.psw-box .send-psw:hover{width:2.2rem;background:#f9225b;border-color:#f9225b;color:#fff}.psw-box .send-psw.disable,.psw-box .send-psw:active.disable,.psw-box .send-psw:hover.disable{background:#b3b3b3}.login-box,.login-header{border-top-right-radius:5px;border-top-left-radius:5px}.login-btns{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;width:4.8rem}.login-cancel,.login-submit{display:block;width:2.2rem;height:.8rem;outline:0;font-size:.34rem;border-radius:5px;border-style:solid;border-width:1px}.login-submit{border-color:#f9225b;background:#f9225b;-webkit-box-shadow:none;box-shadow:none;color:#fff}.login-cancel{border-color:#f9225b;background:#fff}.login-logo{margin:.25rem 0 .13rem;text-align:center}.login-logo img{width:1.75rem;height:auto}.login-close{position:absolute;top:0;right:0;display:inline-block;color:#383838;padding:.2rem}.login-close img{width:.4rem;height:auto}.login-msg{position:absolute;top:4.3rem;margin-left:-2.5rem;width:5rem;height:.8rem;background:rgba(255,255,255,.8);font-size:.28rem;color:#444;border-radius:.1rem}.free-gif,.login-divide{overflow:hidden;width:4.8rem}.login-divide{border-top:1px dashed #b9b9b9;margin:.3rem auto .1rem}.free-gif{margin:0 auto;height:1.9rem;position:relative;text-align:right}.free-gif img{position:absolute;top:0;left:0;width:1.75rem;height:auto}.free-gif-checkbox-wrap{text-align:right;margin:.25rem 0}.free-gif-checkbox-wrap input[type=checkbox]{visibility:hidden}.free-gif-checkbox-wrap label{position:relative;height:.3rem;font-size:.3rem;color:#a0a0a0;vertical-align:middle}.free-gif-checkbox-wrap label:before{display:inline-block;content:'';border:1px solid #f9225b;width:.3rem;height:.3rem;position:absolute;top:0;left:-.4rem;vertical-align:middle}.free-gif-checkbox-wrap input[type=checkbox]:checked+label:before{background:#f9225b}.free-gif-txt{width:4.2rem;text-align:right;margin-left:.6rem;border:1px solid #f9225b;color:#f9225b;font-size:.26rem;margin-top:.2rem;padding-right:.15rem}.login-error-msg{color:red;width:4.8rem;margin:0 auto;font-size:.3rem;line-height:1.2;text-align:left;height:.4rem}.pop2_con,.pop2_title,.pop_con,.pop_title{text-align:center}body,html{width:100%;height:100%;position:relative}.pop_bg{z-index:101;top:0;left:0;background:#000;opacity:.5}.pop,.pop2{position:fixed;width:5rem;top:50%;left:50%;margin-left:-2.5rem}.pop{z-index:102;background:#fff;height:2.4rem;margin-top:-1.2rem;border-radius:.12rem}.pop_title{color:#fff;font-size:.3rem;background:#f9225b;border-radius:.12rem .12rem 0 0;padding:.15rem 0}.pop_con{margin-top:.3rem}.pop_con p{line-height:.5rem;font-size:.28rem;color:#444}.pop2{z-index:103;background:#fff;height:4rem;margin-top:-2rem;border-radius:.12rem}.pop2_title{color:#fff;font-size:.3rem;background:#f9225b;border-radius:.12rem .12rem 0 0;padding:.15rem 0}.pop2_con img{width:4rem;height:1.75rem}.pop2_con p{font-size:.28rem;color:#f9225b;margin-bottom:.2rem}.btn_div a.btn,.btn_div a.cancel{color:#fff;font-size:.3rem;width:1.7rem;display:inline-block;text-align:center;padding:.1rem 0}.btn_div{text-align:center}.btn_div a.cancel{background:#999}.btn_div a.btn{margin-left:.55rem;background:#f9225b}.clear{clear:both}
+        .detail_set a{  padding: .2rem 0;margin:0 0.15rem 0.1rem 0 ;  width: 17%;font-size:0.3rem;overflow:hidden;text-overflow: ellipsis;white-space: nowrap}
+    </style>
+</head>
+<body>
+<div id="orderDialog"><div class="js-order" style="display: none"><div class="pop_bg"></div><div class="pop2"><div class="pop2_title">领取礼包</div><div class="pop2_con"><p><img src="/defaultSite/static/public/images/five_marketing_bg.png"></p><p>0元免费订，优惠享不停</p></div><div class="btn_div"><a href="javascript:;" class="cancel">取消</a><a href="javascript:;" class="btn">免费领取</a></div></div></div><div class="js-order-success" style="display: none"><div class="pop_bg"></div><div class="pop"><div class="pop_title">领取成功</div><div class="pop_con"><p>恭喜你，成功领取咪咕0元大礼包！</p><p>0元免费，精彩不断！</p></div></div></div></div>
+<div id="loginDialog"></div>
+<div class="page">
+    <div class="header">
+        <a href="#" class="header-back">
+            <img src="public/images/back2.png" alt=""/>
+        </a>
+        <h1>动画</h1>
+    </div>
+    <div class="content">
+		<div class="scrolls">
+            <div class="video-box">
+                <video id="video" class="video-js vjs-default-skin"
+                       preload="true" width="100%"
+                       poster="public/images/1.png"
+                       data-setup="{}" draggable="true" contenteditable="false" dropzone="move">
+                </video>
+            </div>
+            <div class="detail">
+                <div class="detail_title">选集<span>最近更新：章节名称></span></div>
+                <div class="detail_set">
+                    <a href="#"><img src="public/images/sub.png"/>精彩平头</a><a href="#"><img src="public/images/sub.png"/>2</a><a href="#" class="selected">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a><a href="#">11</a><a href="#">12</a>
+                </div>
+                <div class="clear"></div>
+                <div class="line">&nbsp;</div>
+                <div class="detail_title">简介</div>
+                <div class="detail_txt">
+                    经过数轮激烈角逐，新一届美国总统加勒特·沃克（迈克·吉尔 Michael Gill 饰）诞生，自称水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党水管工的众议院多数党党
+                </div>
+                <div class="arrow"><img src="public/images/arrow_down.png"/></div>
+                <div class="line">&nbsp;</div>
+            </div>
+            <div class="detail_open">
+                <div class="detail_title">选集<span><img src="public/images/close.png"/></span></div>
+                <div class="detail_set">
+                    <a href="#"><img src="public/images/sub.png"/>1</a><a href="#"><img src="public/images/sub.png"/>2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a><a href="#">11</a><a href="#">12</a><a href="#">13</a><a href="#">14</a><a href="#">15</a><a href="#">16</a><a href="#">17</a><a href="#">18</a><a href="#">19</a><a href="#">20</a><a href="#">21</a><a href="#">22</a><a href="#">23</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+  $('.arrow').click(function(){
+	if($(this).children('img').attr("src")=="public/images/arrow_down.png")
+	{
+        $('.detail_txt').css("height","auto");
+		$(this).children('img').attr("src","public/images/arrow_up.png")
+	}
+	else {
+        $('.detail_txt').css("height","0.72rem");
+		$(this).children('img').attr("src","public/images/arrow_down.png")
+	}
+  });
+
+  
+  $('.detail_set a').click(function(){
+	$('.detail_set a').removeClass("selected");
+	$(this).addClass("selected");  
+  });
+  
+</script>
+<script>
+
+    var hasLoaded = 0;
+
+    var myPlayer = videojs('video');
+
+    $(".vjs-control-content").on('click', function(e){
+        if($('.vjs-fullscreen').length > 0){
+            e.stopPropagation();
+            e.stopImmediatePropagation()
+            myPlayer.exitFullscreen();
+            myPlayer.trigger('fullscreenchange');
+        }
+    });
+
+    //设置视频地址
+    function setVideoUrl(src) {
+        myPlayer.src({ type: "video/mp4", src: src });
+    }
+    //初始设置
+    setVideoUrl('http://10.9.14.45:3000/public/1.mp4');
+
+</script>
+</body>
+<script>
+    //必须在$(function(){})内执行
+    $(function(){
+        /*
+         请求登录,之后弹出名称提示
+
+         */
+        window.showLogin = function(){//requestLogin的参数目前都写死在下面也可以通过函数传进来
+            /*
+             options{
+             isLogin: '', 判断是否登录
+             login: '', 请求登录
+             getVerificationCode: '', 发送验证码
+             isAlert: 1,//是否弹出成功提示 1是， 0 否
+             isLoginSuccess: function(){}, //如果本来已经登录了，会直接执行这个方法
+             success: function(res){}, ajax请求成功回调函数
+             error: function(){}, ajax请求失败回调函数
+             }
+             1.如果已登录，不做任何处理
+             2.未登录，弹出弹窗
+             3.登录请求发送以下参数：{
+             "receive": receive,
+             "msisdn" : loginName,
+             "smsvalidate":smsvalidate,
+             "sessionid":sessionId,
+             "authtype":'DS'
+             }
+             4.登录成功（ajax请求并且登录成功),回调success方法，传回loginName
+             5.登录失败（ajax请求失败的时候调用，请求成功登录失败的信息已在登录框做了提示不做回调处理） ，回调error方法，传回xmlhttpRequest,status
+
+             */
+            requestLogin({
+                isLogin: 'https://10.12.3.221:12630/t.do?requestid=check_login',
+                getVerificationCode: 'https://10.12.3.221:12630/t.do?requestid=getverificationcode',
+                login: 'https://10.12.3.221:12630/t.do?requestid=migupassportvalidate',
+                isAlert: 0,
+                isLoginSuccess: function(){
+                    alert('我已经登录过了')
+                },
+                success: function(e, loginName){//此处参数固定
+                    alert(loginName);
+                },
+                error: function(e, xml, status){}//此处参数固定，不需要可去掉
+            })
+        };
+        //任何ajax请求都可以通过ajaxCall这个方法请求：success请求成功，error失败
+        window.orderPkg = function(){
+            ajaxCall({
+                url: 'http://10.12.3.221:8089/t.do?requestid=h5_order&msisdn=18211208247&pkgid=111&channelid=300000100001&subsid=1&tid=1',//填写免费领取url
+                success: function(res){//res为请求返回的数据
+                    //下面的数据我随便写的，倒时候按你具体数据判断
+                    if(res.rescode == '1' || res.rescode == '2'){//未登录未领取 or 未登录领取，调用登录插件
+                        showLogin(); //上面定义的插件方法
+                    }else if(res.rescode == '0'){ //领取成功
+                        //可做领取按钮置灰
+                        $('.sale-btn').addClass('disabled');
+                    }
+                },
+                error: function() {}//也可以不写
+            })
+        }
+
+        window.showOrder = function(){//requestOrder的参数目前都写死在下面也可以通过函数传进来
+            requestOrder({
+                isOrder: '/t.do?requestid=h5_query',//0：未领取，1已领取,2 鉴权失败
+                order: '/t.do?requestid=h5_order',//发送订购请求
+                //判断是否已领取的请求成功的回调，如果是未领取的插件会弹出弹窗，其他状态可以在这里处理
+                isOrderSuccess: function(res){
+                    console.log('isOrder cb: ' + JSON.stringify(res));
+                },
+                success: function(e, res){//发送领取请求成功的回调
+                    console.log('order cb: ' + JSON.stringify(res));
+                },
+                error: function(e, xml, status){}
+            });
+        }
+
+        function Loader(opts){
+            this.isLoading = !1;
+            this.url = opts.url || '';
+            this.$el = $(opts.el || 'div');
+            this.$cnt = opts.cnt ? $(opts.cnt) : this.$el;
+            this.init();
+            this.disable = opts.disable || !1;
+            this.curPage = parseInt(opts.curPage || 1, 10);
+            this.totalPage = parseInt(opts.totalPage || 1, 10);
+            this.totalRows = parseInt(opts.totalRows || 13, 10);
+        }
+
+        Loader.prototype = {
+            load : function(){
+                var me = this,
+                        curPage = me.curPage;
+                curPage++;
+                if(curPage > me.totalPage || me.isLoading){
+                    return ;
+                }
+                me.isLoading = 1;
+                var url = me.url ;
+                url += (url.indexOf('?') > -1 ? '&' : '?' ) + 'currentPage=' + curPage + '&totalRows=' + me.totalRows;
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    /* timeout: 5000, //请求超时，看平台需不要设就设吧*/
+                    cache: false
+                }).done(function(res){
+                    /*
+                     此处把取到的模板spend到指定节点 $cnt
+                     */
+                    me.$cnt.append('<a href="#"><img src="public/images/sub.png"/>1</a><a href="#"><img src="public/images/sub.png"/>1</a>');
+                    me.curPage = curPage;
+                }).fail(function(xml){
+
+                }).always(function(){
+                    me.isLoading = !1;
+                })
+            },
+            init: function(){
+                var me = this,
+                        $el = me.$el,
+                        el = me.$el[0];
+                $el.on("scroll", function(){
+                    if(me.disable ||me.isLoading || me.curPage == me.totalPage){
+                        return;
+                    };
+                    var scrollHeight = el.scrollHeight,
+                            height = $el.height(),
+                            scrollTop = el.scrollTop;
+                    if(scrollTop + height + 50 > scrollHeight){
+                        me.load();
+                    }
+                })
+            },
+            setDisabled: function(disable){
+                this.disable = !!disable;
+            }
+
+        };
+        var loader = new Loader({
+            el: '.scrolls', /*滚动容器*/
+            cnt: '.detail_open .detail_set' ,
+            curPage: 1,
+            totalRows: 13,
+            totalPage: 10,
+            disable: true,
+            url: 'http://localhost:3000/comic.html'
+        });
+
+
+        $('.detail_title span').click(function(){
+
+            if($('.detail_open').is(":hidden")){
+                $('.detail').hide();
+                $('.detail_open').show();
+                loader.setDisabled(!1);
+            }
+            else{
+                $('.detail_open').hide();
+                $('.detail').show();
+                loader.setDisabled(1);
+            }
+
+        });
+    })
+</script>
+</html>
