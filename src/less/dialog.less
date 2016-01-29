@@ -256,7 +256,7 @@ img{
       }
     }
     input[type=checkbox]:checked + label:before {
-      background:  #f9225b;
+      background-color:  #f9225b;
     }
   }
 
@@ -334,4 +334,10 @@ html,body{
   max-width: 70%;
   word-break: break-all;
   border-radius: 0.06rem;
+}
+.free-gif-checkbox-wrap input[type=checkbox]:checked+label:before {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAARCAMAAADwppwCAAAAGXRFW…dHk76hj07zgq3o2HJMxuTZziQG8J9L2w/zBy7Ae22PAAMA4XsBCGKGwEsAAAAASUVORK5CYII=);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:  .24rem * @dialog-radio .17rem * @dialog-radio;
 }
