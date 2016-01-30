@@ -52,7 +52,8 @@ $(function(){
             getVerificationCode: '', //发送验证码
             isLoginSuccess: function(){},
             success: function(e, res){}, //ajax请求成功回调函数
-            error: function(e, xml, status){} //ajax请求失败回调函数
+            error: function(e, xml, status){}, //ajax请求失败回调函数
+            logincb: function(){} //登录请求成功响应回调，统计用
         }, options);
         request.get(opts.isLogin)
             .done(function(res){

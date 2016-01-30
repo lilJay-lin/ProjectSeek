@@ -9,8 +9,9 @@
 
 module.exports = {
     login: {
-        success: 'login.success',
+        success: 'login.success', //成功登录
         error: 'login.error',
+        logincb: 'login.logincb',//登录请求成功响应包括成功登录，和success为包含关系，为了统计用加上的(20160130)
         always: 'login.always'
     },
     order: {

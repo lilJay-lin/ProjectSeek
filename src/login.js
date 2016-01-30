@@ -43,6 +43,7 @@ var LoginDialog = View.extends({
                         "authtype":'DS'
                     }
                 ).done(function(result){
+                        Events.trigger(GlobalEvent.login.logincb, [result]);
                         if(result !=null ){
                             var resultcode = result.resultcode;
                             if(resultcode=="104000"){
@@ -253,8 +254,10 @@ var LoginDialog = View.extends({
         this.off();
         var success = typeof model.success == 'function' ? model.success : function(){};
         var error = typeof model.error == 'function' ? model.error : function(){};
+        var logincb = typeof model.logincb == 'function' ? model.logincb : function(){};
         Events.on(GlobalEvent.login.success, success);
         Events.on(GlobalEvent.login.error, error);
+        Events.on(GlobalEvent.login.logincb, logincb);
     },
     off: function(){
         Events.off('login');
