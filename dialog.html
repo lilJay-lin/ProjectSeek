@@ -25,7 +25,7 @@
 </div>
 </body>
 <script src="public/js/jquery.min.js"></script>
-<script src="public/bundle.js"></script>
+<script src="public/bundle2.js"></script>
 <script>
     //必须在$(function(){})内执行
     $(function(){
@@ -64,9 +64,9 @@
 
              */
             requestLogin({
-                isLogin: 'https://10.12.3.221:12630/t.do?requestid=check_login',
-                getVerificationCode: 'https://10.12.3.221:12630/t.do?requestid=getverificationcode',
-                login: 'https://10.12.3.221:12630/t.do?requestid=migupassportvalidate',
+                isLogin: 'http://112.4.19.153/t.do?requestid=check_login',
+                getVerificationCode: 'http://112.4.19.153/t.do?requestid=getverificationcode',
+                login: 'http://112.4.19.153/t.do?requestid=migupassportvalidate',
                 isAlert: 0,
                 isLoginSuccess: function(){
                     alert('我已经登录过了')
@@ -75,7 +75,10 @@
                     alert(loginName);
                 },
                 error: function(e, xml, status){
-                }//此处参数固定，不需要可去掉
+                },//此处参数固定，不需要可去掉
+                logincb: function(e, res){//次方法用于获取登录请求参数回调处理，
+                    console.log(res);
+                }
             })
         };
         //任何ajax请求都可以通过ajaxCall这个方法请求：success请求成功，error失败
