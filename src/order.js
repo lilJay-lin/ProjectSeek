@@ -6,7 +6,13 @@ var View = require('./view'),
     _template = require('./tpl/order.html'),
     Events = require('./event'),
     GlobalEvent = require('./global.event');
-
+/*
+* 20160504领取0元包，提示"暂时无法订购哟"
+*/
+var Toast = require('./toast');
+var toast = new Toast({
+    el: document.body
+});
 var OrderDialog= View.extends({
     template: _template,
     events: {
@@ -23,6 +29,13 @@ var OrderDialog= View.extends({
         e.preventDefault();
         var me = this;
         var url = this.model.order;
+        /*
+         * 20160504领取0元包，提示"暂时无法订购哟"
+         */
+        if(1){
+            toast.show('暂时无法订购哟');
+            return ;
+        }
         if(me.$orderBtn.data('lock') == 'lock'){
             return ;
         }

@@ -2,7 +2,7 @@
  * Created by linxiaojie on 2015/11/17.
  */
 var event = require('./event');
-var LoginDialog = require('./login'),
+var /*LoginDialog = require('./login'),*/// 20160308 屏蔽登录弹窗，登录请求跳转到登录页处理，url携带原地址
     OrderDialog = require('./order'),
     Toast = require('./toast'),
     request = require('./request'),
@@ -11,9 +11,9 @@ var LoginDialog = require('./login'),
 require('./css/dialog.min.css');
 
 $(function(){
-    var loginDialog = new LoginDialog({
+/*    var loginDialog = new LoginDialog({
         el: '#loginDialog'
-    });
+    });*/// 20160308 屏蔽登录弹窗，登录请求跳转到登录页处理，url携带原地址
 
 
     var orderDialog = new OrderDialog({
@@ -46,6 +46,7 @@ $(function(){
     window.requestLogin = function(options){
         var isLogin = !1;
         var opts = $.extend({}, {
+            loginUrl: '', //登录地址
             isLogin: '', //判断是否登录: 返回 'true' or 'false' 插件自动判断调用登录弹窗
              login: '', //请求登录
             isAlert: 1,
@@ -60,12 +61,13 @@ $(function(){
                 isLogin = res.islogin == 'true' ? 1 : 0;
             }).always(function(){
                 if(!isLogin){
-                    loginDialog.setup(opts);
-                    loginDialog.show();
+                    /*loginDialog.setup(opts);
+                    loginDialog.show();*/ // 20160308 屏蔽登录弹窗，登录请求跳转到登录页处理，url携带原地址
+                    window.location = opts.loginUrl + '&server=' + encodeURIComponent(location.href);
                 }else{
                     opts.isLoginSuccess();
                 }
-            });
+        });
     };
 
     /*
