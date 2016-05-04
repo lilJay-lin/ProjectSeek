@@ -650,16 +650,25 @@
             pagination : '.ads-swiper-pagination'
         });
         //五类图片宽高计算
-        var cls = ['.video-logo', '.app-logo', '.book-logo', '.music-logo', '.comic-logo'];
-        var radios = [0.66666, 1, 1.3333, 1, 0.66666];
-        $.each(cls, function(i, el){
-            var $el = $(el);
-            $el.each(function(){
-                $(this).height($(this).width() * radios[i]);
-//                console.log($(this).width() * radios[i])
-            })
-
-        });
+        var resetPicSize = function() {
+                    var cls = ['.video-logo', '.app-logo', '.book-logo', '.music-logo'];
+                    var radios = [0.66666, 1, 1.3333, 1];
+                    $.each(cls, function(i, el) {
+                        var $el = $(el);
+                        var h = $el.eq(0).width() * radios[i];
+                            $el.height(h);
+                            $el.children('img').show().css('height', h);
+                    });
+                };
+        resetPicSize();
+        var resetTimeout = null, $limitFree = $('.limit-free');
+        window.onresize = function(){
+            resetTimeout && clearTimeout(resetTimeout);
+            resetTimeout = setTimeout(function(){
+                $limitFree.css('height','auto');
+                resetPicSize();
+            }, 500);
+        };
         //图片懒加载
         $('img[data-original]').lazyload({
             data_attribute:'original'

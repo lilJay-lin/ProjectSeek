@@ -9,7 +9,24 @@
     <!--<script src="public/js/video.min.js"></script>-->
     <script src="public/js/video.dev.js"></script>
     <style>
+        .vjs-current-time.vjs-time-controls.vjs-control{
+            text-algin:center;
+            width: 0.85rem;
+        }
 
+        .vjs-time-divider {
+            left: 1.55rem;
+            width: .85rem;
+        }
+
+        .vjs-duration.vjs-time-controls.vjs-control{
+            left: 0.85rem;
+            width: .95rem;
+        }
+
+        .vjs-current-time-display{
+            text-align:center;
+        }
     </style>
 </head>
 <body>
@@ -23,27 +40,29 @@
 </body>
 <script src="public/js/jquery.min.js"></script>
 <script>
-
-    var load_div = $(".load_div"),
-            hasLoaded = 0;
-
-    var myPlayer = videojs('video');
+    var myPlayer = videojs('video'),
+            hasLoaded = false;
     myPlayer.on( 'play', onplay );
-    myPlayer.on( 'error', onerror );
-    function onerror(e){
-        // console.log('error',e);
-    }
-
-
+    var src = '', url = 'http://vod.gslb.cmvideo.cn/600115/20151206/16/3010320387/3010327789/3010320396_55.mp4.m3u8?msisdn=15918402615&spid=600115&sid=3010320919&pid=2028597435&Channel_ID=100500020020003&ProgramID=611464654&client_ip=10.0.30.254&assertID=3010320387&partnerid=1001242&timestamp=20160331171630&encrypt=3c91c9bcc368894ecd5ea5fc769a6586';
     function onplay(e){
-        if(!hasLoaded){	// 还为请求到播放地址，重新请求
-            getFirstUrl();
+        if(!hasLoaded){
+            setTimeout(function(){
+                myPlayer.src({ type: "video/mp4", src:url });
+            }, 3000)
+            /*myPlayer.load();
+             myPlayer.play();*/
+            hasLoaded = true;
         }
     };
 
-    function getFirstUrl() {  // 数据首次加载，不管收费免费都进行视频数据加载到播放器
-        hasLoaded = 1;
-        myPlayer.src({ type: "video/mp4", src:'http://10.9.14.45:3000/public/1.mp4' });
-    }
+    $('button').on('click', function(){
+        myPlayer.pause();
+        myPlayer.src({ type: "video/mp4", src:'http://vod.gslb.cmvideo.cn/699016/20151222/16/3009414915/3010599449/3010596376_55.mp4.m3u8?msisdn=15918402615&spid=699016&sid=3010593255&pid=2028597435&Channel_ID=100500020020003&ProgramID=613720956&client_ip=10.0.30.254&assertID=3009414915&partnerid=1001242&timestamp=20160331161231&encrypt=181a42c3c4e78481c267c470b05d3e0f' });
+        myPlayer.load();
+        myPlayer.play();
+    });
+
+
+
 </script>
 </html>
